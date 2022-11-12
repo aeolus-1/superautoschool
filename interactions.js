@@ -83,8 +83,8 @@ var personIndex = {
         onbuy:function(e){
             var friend = randomFriend(e, 1)
             if (friend[0] != undefined) {
-                giveHealth(friend[0], e, 1)
-                giveAttack(friend[0], e, 1)
+                giveHealth(friend[0], e, e.level)
+                giveAttack(friend[0], e, e.level)
             }
             
         }
@@ -93,17 +93,18 @@ var personIndex = {
         onfaint:function(e) {
             var friend = randomFriend(e, 1)
             if (friend[0] != undefined) {
-                giveHealth(friend[0], e, 1)
-                giveAttack(friend[0], e, 2)
+                giveHealth(friend[0], e, e.level*2)
+                giveAttack(friend[0], e, e.level)
             }
         }
     },
     "ben reef":{
         ongamestart:function(e){
-            console.log("attack")
+            for (let i = 0; i < e.level; i++) {
+                var enemys = randomEnemy(e, 1)
+                dealDamage(enemys[0], e, 1)
+            }
             
-            var enemys = randomEnemy(e, 1)
-            dealDamage(enemys[0], e, 1)
             
             //console.log(randomEnemy(e, 1))
             
@@ -111,14 +112,16 @@ var personIndex = {
     },
     "jai rodgers":{
         endofturn:function(e) {
-            var friend = randomFriend(e, 1)
-            if (friend[0] != undefined) {
-                giveHealth(friend[0], e, 1)
-            }
+            
+            var friends = randomFriend(e, e.level)
+            friends.forEach(fri => {
+                giveHealth(fri, e, 2)
+            });
         },
     },
     "liam gallagher":{
         onfaint:function(e){
+            console.log(e)
             summon(
                 e,
                 createPerson({
@@ -127,8 +130,8 @@ var personIndex = {
                         imageSrc:"lambo.png"
                     },
                     stats:{
-                        h:1,
-                        d:1,
+                        h:e.level,
+                        d:e.level,
                     }
                 }),
                 0,
@@ -142,9 +145,9 @@ var personIndex = {
     },
     "aiden venter":{
         onsell:function(e){
-            var friends = randomFriend(e, 2)
+            var friends = randomFriend(e, e.level)
             friends.forEach(fri => {
-                giveHealth(fri, e, 1)
+                giveHealth(fri, e, 2)
             });
         },
     },
@@ -158,7 +161,7 @@ var personIndex = {
             var friends = randomFriend(e, 2)
             console.log(friends)
             friends.forEach(fri => {
-                giveHealth(fri, e, 1)
+                giveHealth(fri, e, e.level)
             });
             
             

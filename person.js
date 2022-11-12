@@ -6,6 +6,9 @@ class Person {
             foodItem:false,
 
             frozen:false,
+            level:1,
+            xp:0,
+            nextUpgrade:2,
 
 
             ...options,
@@ -18,6 +21,10 @@ class Person {
 
         this.sprite.person = this
         this.sprite.element.setAttribute("draggaable", "true")
+
+        this.level = this.options.level
+        this.xp = this.options.xp
+        this.nextUpgrade = this.options.nextUpgrade
 
         
 
@@ -57,9 +64,9 @@ class Person {
             tied:true,
             z:10,
         })
-        var details = (this.foodItem)?getFoodDetals(this.sprite.name):getDetails(this.sprite.name)
-        this.abilityText = createText({content:details.description,z:11,font:25,visible:false,tied:true,})
-        this.nameText = createText({content:details.name,z:11,font:25,visible:false,tied:true,})
+        this.details = (this.foodItem)?getFoodDetals(this.sprite.name):getDetails(this.sprite.name)
+        this.abilityText = createText({content:this.details.description(this.level),z:11,font:25,visible:false,tied:true,})
+        this.nameText = createText({content:this.details.name,z:11,font:20,visible:false,tied:true,})
 
 
         persons.push(this)

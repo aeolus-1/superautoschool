@@ -6,6 +6,9 @@ function compressArmy(army) {
             name:person.name,
             stats:person.person.stats,
             order:-person.pos.x,
+            level:person.person.level,
+            xp:person.person.xp,
+            nextUpgrade:person.person.nextUpgrade,
         })
     }
 
@@ -30,6 +33,9 @@ function decompressArmy(armyStr) {
 
                     },
                     stats:person.stats,
+                    level:person.level,
+                    xp:person.xp,
+                    nextUpgrade:person.nextUpgrade,
 
                     
             }

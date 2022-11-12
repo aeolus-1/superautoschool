@@ -40,6 +40,13 @@ function renderPerson(person) {
 
         person.healthText.element.textContent = person.stats.h
         person.attackText.element.textContent = person.stats.d
+
+        if (!person.sprite.inShop) {
+            person.nameText.element.textContent= `${person.details.name}  Lv.${person.level}  ${person.xp}/${person.nextUpgrade}`
+            person.abilityText.element.textContent = person.details.description(person.level)
+    
+        }
+        
     }
     person.freezeBlock.pos = v(person.sprite.pos.x, person.sprite.pos.y)
     person.ability.pos = v(person.sprite.pos.x, person.sprite.pos.y-200)
@@ -51,6 +58,8 @@ function renderPerson(person) {
     person.nameText.element.style["-webkit-text-stroke"] = "1px"
     person.nameText.element.style["color"] = "black"
     person.nameText.element.style["font-family"] = "SAPDes"
+
+    
 
 
 

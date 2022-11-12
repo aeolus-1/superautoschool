@@ -18,8 +18,8 @@ function makePurchase(cost) {
 
 
 
-var y = 30-101+45,
-    y2 = 290-101+45
+var y = 30-101+25,
+    y2 = 290-101+25
 
 var stonePos = {
     person1:v(150,y),

@@ -1,6 +1,6 @@
 var personDetailsIndex = {
     "mitchell cox": {
-        description: "Buy -> Give random friend + 1✊ and +1❤️ ",
+        description: (e)=>{return `Buy -> Give random friend + ${e}✊ and +${e}❤️ `},
         name: "Mitchell Cox",
         baseStats: {
             h: 2,
@@ -8,7 +8,7 @@ var personDetailsIndex = {
         },
     },
     "jett boon": {
-        description: "Faint -> Give random friend + 2✊ and + 1❤️",
+        description: (e)=>{return `Faint -> Give random friend + ${e*2}✊ and + ${e}❤️`},
         name: "Jettrin Goon",
         imageSrc:"jett_boon.png",
 
@@ -18,7 +18,7 @@ var personDetailsIndex = {
         },
     },
     "ben reef": {
-        description: "Start of battle -> Deal 1🪨 to 1 random enemy",
+        description: (e)=>{return `Start of battle -> Deal 1🪨 to ${e} random enemy`},
         name: "Ben Reef",
         imageSrc:"ben_reef.png",
 
@@ -29,7 +29,7 @@ var personDetailsIndex = {
         },
     },
     "jai rodgers": {
-        description: "End turn -> give random friend + 1❤️",
+        description: (e)=>{return `End turn -> give random friend + ${e}❤️`},
         name: "Jai the guy",
         imageSrc:"jai_rodgers.png",
 
@@ -39,7 +39,7 @@ var personDetailsIndex = {
         },
     },
     "liam gallagher": {
-        description: "Faint -> summon 1/1 lambo",
+        description: (e)=>{return `Faint -> summon ${e}/${e} lambo`},
         name: "Liam Gallagher",
 
         imageSrc:"liam_gallagher.png",
@@ -50,7 +50,7 @@ var personDetailsIndex = {
         },
     },
     "aiden venter": {
-        description: "Sell -> give 2 random friends + 1❤️",
+        description: (e)=>{return `Sell -> give ${e+1} random friends + 1❤️`},
         name: "Aiden Venter",
         baseStats: {
             h: 1,
@@ -58,7 +58,7 @@ var personDetailsIndex = {
         },
     },
     "lily derwin": {
-        description: "Sell: Replace food shop with 1 free Bundy Juice that give +1/+1",
+        description: (e)=>{return `Sell: Replace food shop with 1 free Bundy Juice that gives +${e}/+${e}`},
         name: "Lily Derwin",
         imageSrc:"lily_derwin.png",
 
@@ -70,7 +70,6 @@ var personDetailsIndex = {
 
     "patty hayes":{
         imageSrc:"patty_hayes.png",
-        description:"",
         name:"Patty Hayes",
 
         baseStats:{
@@ -105,7 +104,7 @@ var personDetailsIndex = {
 
     },
     "mr behan": {
-        description: "Faint -> Give closest friend + 2✊ and + 2❤️ and 1 exp",
+        description: (e)=>{return `Faint -> Give closest friend + ${e+1}✊ and + ${e+1}❤️ and ${e} exp`},
         name: "Mr. Behan",
         baseStats: {
             h: 1,
@@ -113,7 +112,7 @@ var personDetailsIndex = {
         },
     },
     "marcus gockel": {
-        description: "Sell -> next roll is free",
+        description: (e)=>{return `Sell -> next roll is free`},
         name: "Marcus gockel",
         baseStats: {
             h: 4,
@@ -125,7 +124,7 @@ var personDetailsIndex = {
 var foodDetailsIndex = {
     "bundy juice":{
         name:"Bundy Juice",
-        description:"Gives + 1✊ and + 1❤️",
+        description:()=>{return "Gives + 1✊ and + 1❤️"},
         stats:{
             d:1,
             h:1,
@@ -133,7 +132,7 @@ var foodDetailsIndex = {
     },
     "chip salt":{
         name:"Red Rock Deli Chips ",
-        description:"Gives + 2✊",
+        description:()=>{return "Gives + 2✊"},
         stats:{
             d:2,
             h:0,
@@ -141,7 +140,7 @@ var foodDetailsIndex = {
     },
     "calippo":{
         name:"Calippo",
-        description:"Gives - 1❤️ and + 3✊",
+        description:()=>{return "Gives - 1❤️ and + 3✊"},
         stats:{
             h:-1,
             d:3,
@@ -151,7 +150,7 @@ var foodDetailsIndex = {
 }
 function getDetails(str) {
     return {
-        description:"unDescripted",
+        description:()=>{return"unDescripted"},
         name:"Untitled",
         imageSrc:"mitchell_cox.png",
         baseStats:{
@@ -165,7 +164,7 @@ function getDetails(str) {
 
 function getFoodDetals(str) {
     return {
-        description:"unDescripted",
+        description:()=>{return "unDescripted"},
         name:"Untitled",
         stats:{
             h:1,

@@ -1,4 +1,4 @@
-var globalAnimationSpeed = 1.5,
+var globalAnimationSpeed = 1,
     pauseSpeed = 1
 
 
