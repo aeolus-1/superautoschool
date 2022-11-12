@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUPER AUTO hillbrook</title>
+
+    <style>
+        @font-face { font-family: SAP; src: url('LapsusPro-Bold.otf'); } 
+        @font-face { font-family: SAPDes; src: url("stylus-itc-std.otf"); } 
+        body {
+            margin: 0%;
+            overflow: hidden;
+
+            
+
+            font-family: "SAP";
+            color: white;
+            -webkit-text-stroke: 3px black;
+            font-size: 30px;
+            user-select: none;
+
+            text-align: center;
+            
+        };
+
+        body > * {
+            position: absolute;
+
+            background-repeat: no-repeat;
+
+        };
+        .nonDraggableImage{
+            -webkit-user-drag: none;
+        }
+        
+        .person {
+            border-radius: 5%;
+
+
+        }      
+       
+            
+    </style>
+
+    <script src="common.js"></script>
+</head>
+
+<body>
+    <script>if (!location.href.includes("file")) alert("wip")</script>
+    <img src="imgs/iceCube.png" id="iceCubeImage" alt="no" style="display: none;">
+
+    <script src="persons.js"></script>
+    <script src="interactions.js"></script>
+    <script src="bot.js"></script>
+    <script src="spriteController.js"></script>
+    <script src="textController.js"></script>
+    <script src="screenUpdater.js"></script>
+    <script src="htmlControl.js"></script>
+    <script src="spriteRunner.js"></script>
+    <script src="person.js"></script>
+    <script src="warCompression.js"></script>
+
+    <script src="gui.js"></script>
+    <script src="animations.js"></script>
+
+    <script src="shop.js"></script>
+    <script src="game.js"></script>
+    <script src="war.js"></script>
+
+    <script src="init.js"></script>
+</body>
+</html>
