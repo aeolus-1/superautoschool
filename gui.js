@@ -126,12 +126,16 @@ function createGui() {
         onclick:function(e){
             requestInteraction(selectedSprite.name).onsell(selectedSprite.person)
 
+            gameState.coins += selectedSprite.person.level
+
             selectedSprite.dockedIn.docked = undefined
             deletePerson(selectedSprite.person)
             selectedSprite = undefined
             gameHighlight.pos = v(-10000,-10000)
             gui['sell'].render.visible = false
             gui['freeze'].render.visible = false
+
+            
         },
     })
 }

@@ -120,23 +120,23 @@ var personIndex = {
         },
     },
     "liam gallagher":{
-        onfaint:function(e){
+        onfaint:function(e, newSummons){
             console.log(e)
-            summon(
-                e,
-                createPerson({
+            var p = createPerson({
                     sprite:{
                         name:"lambo",
-                        imageSrc:"lambo.png"
+                        imageSrc:"lambo.png",
+                        pos:{...e.sprite.pos},
+
                     },
                     stats:{
                         h:e.level,
                         d:e.level,
-                    }
-                }),
-                0,
-                e.army
-            )
+                    },
+                })
+                p.army = e.army
+                newSummons.push(p)
+                console.log(newSummons)
 
             
             

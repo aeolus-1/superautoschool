@@ -16,7 +16,7 @@ function playAnimation(ani, then) {
 
         if (finish) {
             clearInterval(aniInterval)
-            deleteSprite(aniObject.object)
+            if (aniObject.object != undefined) deleteSprite(aniObject.object)
             then()
         }
     }, 1000/30);
@@ -52,7 +52,7 @@ function throwFist(from, to) {
     return {
         func:(per, ob)=>{
 
-            var dst = -(ob.from.pos.x-ob.to.pos.x)
+            var dst = -(ob.from.pos.x-ob.to.pos.x)+0.01
             ob.object.pos.x = ob.from.pos.x+(dst*per)
 
 
@@ -66,5 +66,43 @@ function throwFist(from, to) {
         time:1,
         from:from,
         to:to,
+    }
+}
+function smackPersons(person1, person2) {
+    return {
+        func:(per, ob)=>{
+            console.log(per, ob)
+            var p = per//Math.min(per*8, 1)
+            ob.person1.sprite.targetPos.x = -110+(((p)*70))
+            ob.person2.sprite.targetPos.x = 110-((p)*70)
+            return per==1
+        },
+        time:1,
+        person1:person1,
+        person2:person2,
+    }
+}
+
+function launchPersons(person1, person2) {
+    return {
+        func:(per, ob)=>{
+
+            //if (person2.stats.h <= 0) {
+            var dst = 4000
+
+            ob.person2.sprite.targetPos.x = 40+(dst*per)
+            ob.person2.sprite.targetPos.y = createParabola(-dst*per, -dst, 100)+40
+            //}
+            //if (person1.stats.h <= 0) {
+            var dst = 4000
+
+            ob.person1.sprite.targetPos.x = -40+(-dst*per)
+            ob.person1.sprite.targetPos.y = createParabola(dst*per, dst, 100)+40
+            //}
+            return per==1
+        },
+        time:0.5,
+        person1:person1,
+        person2:person2,
     }
 }

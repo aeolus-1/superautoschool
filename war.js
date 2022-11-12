@@ -106,6 +106,7 @@ function runWalkInAni(army, direction, per) {
     for (let i = 0; i < army.length; i++) {
         const person = army[i];
         var j = (i)
+        console.log(army, person, i)
         person.sprite.targetPos = v(
             (
                 (((htmlSize.x*per)-(htmlSize.x)-100)*direction) - 
@@ -136,6 +137,56 @@ function aniBlast(army, direction, per) {
     return per==1
 }
 
+function runDeathAbilitys() {
+    var newSummons = []
+    for (let i = 0; i < army1.length; i++) {
+        const person = army1[i];
+        if (person.stats.h <= 0) {
+            console.log(person.sprite.name, requestInteraction(person.sprite.name).onfaint)
+            requestInteraction(person.sprite.name).onfaint(person, newSummons)
+        
+
+        }
+    }
+    army1 = [...newSummons, ...army1]
+    console.log(newSummons)
+
+    newSummons = []
+    for (let i = 0; i < army2.length; i++) {
+        const person = army2[i];
+        if (person.stats.h <= 0) {
+            requestInteraction(person.sprite.name).onfaint(person, newSummons)
+        
+
+        }
+    }
+    army2 = [...newSummons, ...army2]
+    console.log(newSummons)
+
+
+    
+}
+
+function deleteDead() {
+    for (let i = 0; i < army1.length; i++) {
+        const person = army1[i];
+        if (person.stats.h <= 0) {
+
+        army1.splice(i,1)
+        deletePerson(person)
+
+        }
+    }
+    for (let i = 0; i < army2.length; i++) {
+        const person = army2[i];
+        if (person.stats.h <= 0) {
+        army2.splice(i,1)
+        deletePerson(person)
+
+        }
+    }
+}
+
 function calculateGame() {
     army1[0].stats.h -= army2[0].stats.d
     army2[0].stats.h -= army1[0].stats.d
@@ -146,32 +197,7 @@ function calculateGame() {
     requestInteraction(army1[0].sprite.name).endofturn(army1[0])
     requestInteraction(army2[0].sprite.name).endofturn(army2[0])
 
-    for (let i = 0; i < army1.length; i++) {
-        const person = army1[i];
-        if (person.stats.h <= 0) {
-        var run = requestInteraction(person.sprite.name).onfaint
-        console.log(person)
-
-        person.army.splice(i,1)
-        deletePerson(person)
-
-        run(person)
-        }
-    }
-    for (let i = 0; i < army2.length; i++) {
-        const person = army2[i];
-        if (person.stats.h <= 0) {
-        var run = requestInteraction(person.sprite.name).onfaint
-        console.log(person)
-        person.army.splice(i,1)
-        deletePerson(person)
-
-        run(person)
-        }
-    }
-
-    runWalkInAni(army1, 1, 1)
-    runWalkInAni(army2, -1, 1)
+    
 
     
     
@@ -185,7 +211,6 @@ function summon(e, person, position, army) {
     person.army = e.army
 
     army.unshift(person)//army.splice(position, 0, person);
-    console.log(army)
     runWalkInAni(army1, 1, 1)
     runWalkInAni(army2, -1, 1)
 }
@@ -198,28 +223,67 @@ function testEndGame() {
 }
 
 function stepGame(i) {
-    console.log(i)
+
     
-    var result = calculateGame()
-    if (result == 0) {
-        var checkInterval = setInterval(() => {
-            if (warStageAllClear <= 0) {
-                warStageAllClear = 0
-                clearInterval(checkInterval)
-                runWalkInAni(army1, 1, 1)
-                runWalkInAni(army2, -1, 1)
+    runDeathAbilitys()
+    deleteDead()
+
+    runWalkInAni(army1, 1, 1)
+    runWalkInAni(army2, -1, 1)
+
+    setTimeout(() => {
+        
+    
+    
+        calculateGame()
+        runDeathAbilitys()
+        deleteDead()
+
+        
+
+        setTimeout(() => {
+
+
+            runWalkInAni(army1, 1, 1)
+            runWalkInAni(army2, -1, 1)
+
+
+            
+
+            var result = testEndGame()
+            
+
+            /*warStageAllClear += 1
+
+            playAnimation(smackPersons(army1[0], army2[0]), ()=>{
+
+                warStageAllClear -= 1
+
+            })*/
+
+            
+            if (result == 0) {
+                var checkInterval = setInterval(() => {
+                    if (warStageAllClear <= 0) {
+                        warStageAllClear = 0
+                        clearInterval(checkInterval)
+                        runWalkInAni(army1, 1, 1)
+                        runWalkInAni(army2, -1, 1)
+                        setTimeout(() => {
+                            stepGame(i+1)
+                        }, 1000/pauseSpeed);
+                    }
+                }, 1000/30);
+                
+            } else {
                 setTimeout(() => {
-                    stepGame(i+1)
+                    clearInterval(targetPosInterval)
+                    endGameScreen(result, preArmy)
                 }, 1000/pauseSpeed);
             }
-        }, 1000/30);
-        
-    } else {
-        setTimeout(() => {
-            clearInterval(targetPosInterval)
-            endGameScreen(result, preArmy)
-        }, 1000/pauseSpeed);
-    }
+        }, 500/pauseSpeed);
+
+    }, 500/pauseSpeed);
 }
 
     /*

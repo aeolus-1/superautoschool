@@ -40,7 +40,7 @@ class Sprite {
         this.selectable = this.options.selectable
 
         this.pos = this.options.pos
-        this.targetPos = v()
+        this.targetPos = {...this.options.pos}
         this.rotation = 0
 
         this.tied = this.options.tied
