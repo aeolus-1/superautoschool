@@ -91,7 +91,7 @@ var spriteLists = {
     
 }
 
-function genShop() {
+function genShop(frozenIndivuals=[]) {
     clearShop()
     function sP(stone, list, foodItem=false,) {
         if ((stone.ele.docked!=undefined)?!stone.ele.docked.person.frozen:true) {
@@ -116,6 +116,27 @@ function genShop() {
 
     sP(stonePos.shopFood1, spriteLists.food, true)
     sP(stonePos.shopFood2, spriteLists.food, true)
+
+
+    console.log(frozenIndivuals)
+    for (let i = 0; i < frozenIndivuals.length; i++) {
+        const person = frozenIndivuals[i];
+        var stone = stonePos[person.stone.name]
+        deletePerson(stone.ele.docked.person)
+        stone.ele.docked = undefined
+        var newPerson = createPerson({
+            sprite:{
+                name:person.name,
+                imageSrc:`${person.name.replace(" ", "_")}.png`,
+
+            },
+            frozen:true,
+            foodItem:(person.stone.name.includes("Food")),
+            stats:person.stats,
+        })
+        newPerson.sprite.inShop = true
+        placeSpriteInStone(newPerson.sprite, stone)
+    }
     /*placeSpriteInStone(createSprite({
         name:"ben reef",
         imageSrc:"ben_reef.png",

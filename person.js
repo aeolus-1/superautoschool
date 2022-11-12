@@ -5,6 +5,8 @@ class Person {
 
             foodItem:false,
 
+            frozen:false,
+
 
             ...options,
         }
@@ -21,7 +23,7 @@ class Person {
 
         this.alive = true
 
-        this.frozen = false
+        this.frozen = this.options.frozen
 
         this.foodItem = this.options.foodItem
         if (!this.foodItem) {
@@ -66,8 +68,8 @@ class Person {
 
 function deletePerson(person) {
     [person.healthText, person.attackText, person.hotbar, person.sprite, person.freezeBlock].forEach(s => {
-        console.log(s)
         if (s != undefined) {
+            console.log(s)
             deleteSprite(s)
             s.element.remove()
             s.toDelete = true

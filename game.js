@@ -50,11 +50,12 @@ function createStones() {
         })
 
         stoneS.srcStone = stonePos[stones[i]]
+        stoneS.srcStone.name = stones[i]
         stonePos[stones[i]].ele = stoneS
     }
 }
 
-function startGame(preArmy) {
+function startGame(preArmy, frozenIndivuals) {
     for (let i = 0; i < sprites.length; i++) {
         const sp = sprites[i];
         if (sp.person) {
@@ -82,18 +83,16 @@ function startGame(preArmy) {
     })
 
 
-    genShop()
+    genShop(frozenIndivuals)
 
     
 
     if (preArmy !=undefined) {
-        console.log(preArmy)
 
         var armys = decompressArmy(preArmy)
 
         for (let i = 0; i < armys.length; i++) {
             const person = armys[i];
-            console.log(person.sprite, stonePos[`person${((i))+1}`], `person${((i))+1}`)
             placeSpriteInStone(person.sprite, stonePos[`person${((i))+1}`])
             army1.push(person)
             person.army = army1

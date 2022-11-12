@@ -170,7 +170,7 @@ function endGameScreen(result, preArmy) {
     ])[result+1]()
 
     setTimeout(() => {
-        startGame(preArmy)
+        startGame(preArmy, frozenIndivuals)
     }, 2000);
 }
 //        

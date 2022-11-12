@@ -12,21 +12,34 @@ var army1 = [],
     army2,
     preArmy,
     warStageAllClear = 0,
-    targetPosInterval
+    targetPosInterval,
+
+    frozenIndivuals = []
 
 function startWar(army1S, army2S) {
     preArmy = army1S
     document.body.style["background-image"] = 'url("imgs/backWar.png")'
     document.body.style["background-color"] ="black"
+    frozenIndivuals = []
     for (let i = 0; i < sprites.length; i++) {
         const sp = sprites[i];
         if (sp.person) {
-            if (!sp.person.frozen) deletePerson(sp.person)
-            continue
+            if (sp.person.frozen) {
+                console.log(sp)
+                frozenIndivuals.push({
+                    name:sp.name,
+                    stats:sp.person.stats,
+                    order:-sp.pos.x,
+                    stone:sp.dockedIn.srcStone
+                })
+            }
+            deletePerson(sp.person)
+            
         } else if (!sp.tied){
             deleteSprite(sp)
         }
     }
+    console.log(frozenIndivuals)
 
     for (let i = 0; i < texts.length; i++) {
         const text = texts[i];
@@ -144,7 +157,6 @@ function testEndGame() {
 
 function stepGame() {
     var result = calculateGame()
-    console.log(warStageAllClear)
     if (result == 0) {
         var checkInterval = setInterval(() => {
             if (warStageAllClear <= 0) {

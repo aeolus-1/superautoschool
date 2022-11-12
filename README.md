@@ -1,2 +1,0 @@
-# superautoschool
-nothing personal
