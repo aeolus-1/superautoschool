@@ -9,7 +9,7 @@ var htmls = {
 
 var screenShake = 0;
 
-var htmlSize = v(window.innerWidth, window.innerHeight);
+var htmlSize = v(1680, 913);
 
 function createSpriteHTML(options) {
   var ele = createElementFromHTML(htmls.sprite(options));

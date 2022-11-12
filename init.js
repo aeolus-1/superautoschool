@@ -26,3 +26,5 @@ startGame()
 
 //document.body.ondrop = (e)=>{console.log(e)}
 
+document.body.style.zoom = `0.86`
+document.body.style["background-size"] = "68%"
