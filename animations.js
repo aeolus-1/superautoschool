@@ -1,3 +1,7 @@
+var globalAnimationSpeed = 1.5,
+    pauseSpeed = 1
+
+
 function playAnimation(ani, then) {
     var aniTime = ((new Date().getTime())/1000),
         aniObject = ani
@@ -5,7 +9,7 @@ function playAnimation(ani, then) {
     var aniInterval = setInterval(() => {
         
         var finish = aniObject.func( 
-            Math.min((((new Date().getTime()/1000)-aniTime))/aniObject.time, 1),
+            Math.min((((new Date().getTime()/1000)-aniTime))/(aniObject.time/globalAnimationSpeed), 1),
             aniObject
             )
 

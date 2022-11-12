@@ -121,12 +121,14 @@ function createGui() {
         z:10,
         visible:false,
         onclick:function(e){
+            requestInteraction(selectedSprite.name).onsell(selectedSprite.person)
+
             selectedSprite.dockedIn.docked = undefined
             deletePerson(selectedSprite.person)
             selectedSprite = undefined
-        gameHighlight.pos = v(-10000,-10000)
-        gui['sell'].render.visible = false
-        gui['freeze'].render.visible = false
+            gameHighlight.pos = v(-10000,-10000)
+            gui['sell'].render.visible = false
+            gui['freeze'].render.visible = false
         },
     })
 }
@@ -171,6 +173,6 @@ function endGameScreen(result, preArmy) {
 
     setTimeout(() => {
         startGame(preArmy, frozenIndivuals)
-    }, 2000);
+    }, 2000/pauseSpeed);
 }
 //        

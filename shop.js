@@ -1,7 +1,7 @@
 function clearShop() {
     [stonePos.shop2,stonePos.shop3,stonePos.shop4,stonePos.shopFood1,stonePos.shopFood2].forEach(s => {
         var docked = s.ele.docked
-        if (docked != undefined && !docked.person.frozen) {
+        if (docked != undefined && (docked.person!=undefined)?!docked.person.frozen:false) {
             deletePerson(docked.person)
         }
     });
@@ -123,7 +123,8 @@ function genShop(frozenIndivuals=[]) {
         const person = frozenIndivuals[i];
         var stone = stonePos[person.stone.name]
         deletePerson(stone.ele.docked.person)
-        stone.ele.docked = undefined
+        
+
         var newPerson = createPerson({
             sprite:{
                 name:person.name,

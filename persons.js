@@ -53,8 +53,8 @@ var personDetailsIndex = {
         description: "Sell -> give 2 random friends + 1❤️",
         name: "Aiden Venter",
         baseStats: {
-            h: 3,
-            d: 2,
+            h: 1,
+            d: 1,
         },
     },
     "lily derwin": {

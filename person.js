@@ -69,7 +69,6 @@ class Person {
 function deletePerson(person) {
     [person.healthText, person.attackText, person.hotbar, person.sprite, person.freezeBlock].forEach(s => {
         if (s != undefined) {
-            console.log(s)
             deleteSprite(s)
             s.element.remove()
             s.toDelete = true

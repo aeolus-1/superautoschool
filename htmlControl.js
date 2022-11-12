@@ -71,12 +71,13 @@ function drop(e) {
     sourceStone = document.getElementById(data[1]);
 
   console.log("drop");
-  console.log(makingPurchase, droppingFood)
   if ((makingPurchase)?makePurchase(3):true) {
     if (droppingFood) {
         e.srcElement.sprite.person.frozen = false
         e.srcElement.sprite.person.stats.h += 1
         e.srcElement.sprite.person.stats.d += 1
+
+        sourceStone.sprite.docked = undefined
 
         playAnimation(throwApple(e.srcElement.sprite, e.srcElement.sprite), ()=>{})
 
@@ -132,7 +133,6 @@ function allowDrop(ev) {
 function dragstart(ev) {
   droppingFood = ev.target.sprite.person.foodItem;
   makingPurchase = ev.target.sprite.inShop
-  console.log(ev.target.id);
   ev.dataTransfer.setData(
     "text",
     `${ev.target.id}/${ev.target.sprite.dockedIn.element.id}`
