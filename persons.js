@@ -104,22 +104,48 @@ var personDetailsIndex = {
         name:"Jacob Said",
 
     },
-    "marcus gockel":{
-        imageSrc:"marcus_gockel.png",
-        name:"Marcus Gockel",
-
+    "mr behan": {
+        description: "Faint -> Give closest friend + 2✊ and + 2❤️ and 1 exp",
+        name: "Mr. Behan",
+        baseStats: {
+            h: 1,
+            d: 2,
+        },
     },
-    "mr behan":{
-        imageSrc:"mr_behan.png",
-        name:"Mr Behan",
-
+    "marcus gockel": {
+        description: "Sell -> next roll is free",
+        name: "Marcus gockel",
+        baseStats: {
+            h: 4,
+            d: 1,
+        },
     },
 }
 
 var foodDetailsIndex = {
     "bundy juice":{
         name:"Bundy Juice",
-        descriptions:"Food",
+        description:"Gives + 1✊ and + 1❤️",
+        stats:{
+            d:1,
+            h:1,
+        }
+    },
+    "chip salt":{
+        name:"Red Rock Deli Chips ",
+        description:"Gives + 2✊",
+        stats:{
+            d:2,
+            h:0,
+        }
+    },
+    "calippo":{
+        name:"Calippo",
+        description:"Gives - 1❤️ and + 3✊",
+        stats:{
+            h:-1,
+            d:3,
+        }
     },
    
 }
@@ -134,5 +160,18 @@ function getDetails(str) {
         },
 
         ...personDetailsIndex[str],
+    }
+}
+
+function getFoodDetals(str) {
+    return {
+        description:"unDescripted",
+        name:"Untitled",
+        stats:{
+            h:1,
+            d:1,
+        },
+
+        ...foodDetailsIndex[str],
     }
 }

@@ -74,8 +74,9 @@ function drop(e) {
   if ((makingPurchase)?makePurchase(3):true) {
     if (droppingFood) {
         e.srcElement.sprite.person.frozen = false
-        e.srcElement.sprite.person.stats.h += 1
-        e.srcElement.sprite.person.stats.d += 1
+        var stats = getFoodDetals(element.sprite.name).stats
+        e.srcElement.sprite.person.stats.h += stats.h
+        e.srcElement.sprite.person.stats.d += stats.d
 
         sourceStone.sprite.docked = undefined
 

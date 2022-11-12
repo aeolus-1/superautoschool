@@ -166,6 +166,11 @@ var personIndex = {
     },
     "oscar bw":{
         
+    },
+    "marcus gockel":{
+        onsell:function(){
+            rollCost = 0
+        }
     }
 }
 

@@ -5,6 +5,8 @@ var gameState = {
     turn:0,
 }
 
+var rollCost = 1
+
 function makePurchase(cost) {
     if (gameState.coins >= cost) {
         gameState.coins -= cost

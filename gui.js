@@ -87,7 +87,10 @@ function createGui() {
         pos:v(-(htmlSize.x*0.5)+142.5, (htmlSize.y*0.5)-60),
         z:10,
         onclick:function(e){
-            if(makePurchase(1)) genShop()
+            if(makePurchase(rollCost)) {
+                genShop()
+                rollCost = 1
+            }
         },
     })
     gui["endTurn"] = createSprite({
