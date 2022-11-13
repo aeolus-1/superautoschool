@@ -85,7 +85,7 @@ function dealDamage(e, self, amount) {
 
     playAnimation(throwItem("fist.png", self.sprite, e.sprite), ()=>{
         e.stats.h -= amount+(requestFoodInteraction(e.heldFood).incomeDamageMod)
-
+        screenShake += 5
         warStageAllClear -= 1
     })
 }
@@ -187,7 +187,12 @@ var personIndex = {
         }
     },
     "oscar bw":{
-        
+        endofturn:function(e){
+            if (e.heldFood != undefined) {
+                giveHealth(e, e, e.level)
+                giveAttack(e, e, e.level)
+            }
+        }
     },
     "marcus gockel":{
         onsell:function(){
@@ -208,6 +213,30 @@ var personIndex = {
         onfriendsummoned:function(e, summoned) {
             giveHealth(summoned, e, e.level)
             giveAttack(summoned, e, e.level)
+        }
+    },
+    "chloe rossner":{
+        onfaint:function(e, newSummons1, newSummons2){
+            console.log(e)
+            var p = createPerson({
+                    sprite:{
+                        name:"greenie",
+                        imageSrc:"greenie.png",
+                        pos:{...e.sprite.pos},
+
+                    },
+                    stats:{
+                        h:e.level,
+                        d:e.level,
+                    },
+                })
+                p.army = (e.army == army1)?army2:army1
+                newSummons2.push(p)
+
+            
+            
+            
+        
         }
     }
 }

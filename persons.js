@@ -77,15 +77,23 @@ var personDetailsIndex = {
             d: 2,
         },
     },
-    "oscar bw":{
+    "oscar bw": {
+        description: (e)=>{return`End Turn -> if holding food item then gain + ${e}❤️ and + ${e}✊`},
+        name: "Oscae Benjamin-Wood",
         imageSrc:"oscar_bw.png",
-        name:"Oscar Benjamin-Wood",
-
+        baseStats: {
+            h: 3,
+            d: 2,
+        },
     },
-    "chloe rossner":{
+    "chloe rossner": {
+        description: (e)=>{return`Faint -> summon enemy ${e}/${e} Greenie`},
+        name: "Chloe Rossner",
         imageSrc:"chloe_rossner.png",
-        name:"Chloe Rossner",
-
+        baseStats: {
+            h: 4,
+            d: 3,
+        },
     },
     "corey hankinson":{
         imageSrc:"corey_hankinson.png",
@@ -167,7 +175,6 @@ var foodDetailsIndex = {
     "jelly":{
         name:"Jelly",
         description:()=>{return "Take 1 less damage per hit"},
-        held:true,
     },
    
 }

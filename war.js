@@ -134,44 +134,45 @@ function aniBlast(army, direction, per) {
 }
 
 function runDeathAbilitys() {
-    var newSummons = []
+    var newSummons1 = [],
+    newSummons2 = []
+
     for (let i = 0; i < army1.length; i++) {
         const person = army1[i];
         if (person.stats.h <= 0) {
-            requestInteraction(person.sprite.name).onfaint(person, newSummons)
+            requestInteraction(person.sprite.name).onfaint(person, newSummons1, newSummons2)
         
 
         }
     }
 
-    for (let i = 0; i < newSummons.length; i++) {
-        const summon = newSummons[i];
+    for (let i = 0; i < army2.length; i++) {
+        const person = army2[i];
+        if (person.stats.h <= 0) {
+            requestInteraction(person.sprite.name).onfaint(person, newSummons2, newSummons1)
+        
+
+        }
+    }
+
+
+    for (let i = 0; i < newSummons1.length; i++) {
+        const summon = newSummons1[i];
         for (let j = 0; j < army1.length; j++) {
             const person = army1[j];
             requestInteraction(person.sprite.name).onfriendsummoned(person, summon)
         }
     }
-    army1 = [...newSummons, ...army1]
-
-
-    newSummons = []
-    for (let i = 0; i < army2.length; i++) {
-        const person = army2[i];
-        if (person.stats.h <= 0) {
-            requestInteraction(person.sprite.name).onfaint(person, newSummons)
-        
-
-        }
-    }
-    for (let i = 0; i < newSummons.length; i++) {
-        const summon = newSummons[i];
+    army1 = [...newSummons1, ...army1]
+    for (let i = 0; i < newSummons2.length; i++) {
+        const summon = newSummons2[i];
         for (let j = 0; j < army2.length; j++) {
             const person = army2[j];
             requestInteraction(person.sprite.name).onfriendsummoned(person, summon)
         }
     }
-    army2 = [...newSummons, ...army2]
-
+    army2 = [...newSummons2, ...army2]
+    console.log(newSummons2, army2)
 
     
 }
@@ -256,6 +257,8 @@ function stepGame(i) {
         runDeathAbilitys()
         deleteDead()
 
+        runWalkInAni(army1, 1, 1)
+            runWalkInAni(army2, -1, 1)
         
 
         setTimeout(() => {
@@ -282,6 +285,7 @@ function stepGame(i) {
             if (result == 0) {
                 var checkInterval = setInterval(() => {
                     if (warStageAllClear <= 0) {
+                        
                         warStageAllClear = 0
                         clearInterval(checkInterval)
                         runWalkInAni(army1, 1, 1)

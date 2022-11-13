@@ -70,7 +70,7 @@ var spriteLists = {
     },
     
     {}],
-    food:[/*
+    food:[
     {
         name:"chip salt",
         imageSrc:"chip_salt.png",
@@ -82,7 +82,7 @@ var spriteLists = {
     {
         name:"bundy juice",
         imageSrc:"bundy_juice.png",
-    },*/
+    },
     {
         name:"basil",
         imageSrc:"basil.png",

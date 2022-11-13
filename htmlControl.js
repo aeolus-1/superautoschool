@@ -107,14 +107,16 @@ function drop(e) {
         } else {
           e.srcElement.sprite.person.frozen = false;
           var stats = details.stats;
-          e.srcElement.sprite.person.stats.h += stats.h;
-          e.srcElement.sprite.person.stats.d += stats.d;
+          
 
           sourceStone.sprite.docked = undefined;
 
           playAnimation(
-            throwApple(e.srcElement.sprite, e.srcElement.sprite),
-            () => {}
+            throwItem("apple.png", e.srcElement.sprite, e.srcElement.sprite),
+            () => {
+              e.srcElement.sprite.person.stats.h += stats.h;
+          e.srcElement.sprite.person.stats.d += stats.d;
+            }
           );
 
           deletePerson(element.sprite.person);
