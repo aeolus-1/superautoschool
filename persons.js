@@ -139,6 +139,22 @@ var personDetailsIndex = {
             d: 2,
         },
     },
+    "jack hildebran": {
+        description: (e)=>{return `No ability, just raw strength`},
+        name: "Jack Hildedad",
+        baseStats: {
+            h: 7,
+            d: 7,
+        },
+    },
+    "jacob said": {
+        description: (e)=>{return `Enemy Summoned -> deal 1🪨 to 2 random enemys`},
+        name: "Jacob Said",
+        baseStats: {
+            h: 3,
+            d: 2,
+        },
+    },
 
 }
 

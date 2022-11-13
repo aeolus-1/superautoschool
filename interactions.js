@@ -2,6 +2,7 @@ var defualtIndex = {
     ongamestart:function(){console.log("start")},
     onfaint:function(){console.log("faint")},
     onfriendsummoned:function(){},
+    onenemysummoned:function(){},
     endofturn:function(){},
     onhurt:function(){},
 
@@ -31,8 +32,8 @@ function randomFriend(e, amount) {
 
     var friendsList = new Array(),
         fris = getFriends(e, e.army)
-    console.log(fris)
-    for (let i = 0; i < amount; i++) {
+
+        for (let i = 0; i < amount; i++) {
         if (fris.length <= 0) return friendsList
         var num = randInt(0, fris.length-1),
             returnOb = fris[num]
@@ -264,6 +265,14 @@ var personIndex = {
             }
         }
     },
+    "jacob said":{
+        onenemysummoned:function(e, summon){
+            for (let i = 0; i < e.level+1; i++) {
+                var enemys = randomEnemy(e, 1)
+                dealDamage(enemys[0], e, 1)
+            }
+        }
+    }
     
 }
 
@@ -273,10 +282,9 @@ var foodIndex = {
     },
     "jelly":{
         endofturn:function(e, turn) {
-            if (turn==0) {
-                e.stats.h -= 3
-                e.stats.d -= 3
-            }
+            e.stats.h -= 3
+            e.stats.d -= 3
+            
             e.heldFood = undefined
             e.heldFoodSprite.render.visible = false
         },

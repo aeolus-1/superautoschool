@@ -78,6 +78,25 @@ function createGui() {
         font:75,
     })
 
+    //==========================    name   ==========================
+    gui["gameName"] = createSprite({
+        imageSrc:"extraLongBlock.png",
+        pos:v((htmlSize.x*0.5)-210-6, -(htmlSize.y*0.5)+62.5+4),
+        z:10,
+    })
+    gui["name-inout"] = createText({
+        content:"",
+        pos:v(gui["gameName"].pos.x+45, gui["gameName"].pos.y-20),
+        z:10,
+        font:60,
+    })
+    gui["name-inout"].element.innerHTML = `<input style='
+        width:200px;
+        margin-left:20px;
+        height:35px;
+        font-size:25px;
+    ' maxlength='13' id="nameInput" type='text'></input>`
+
 
     //==========================    Butttons   ==========================
 
