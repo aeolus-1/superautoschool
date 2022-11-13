@@ -35,16 +35,17 @@ function throwItem(imageSrc, from, to) {
             var dst = -(ob.from.pos.x-ob.to.pos.x)+0.01
             ob.object.pos.x = ob.from.pos.x+(dst*per)
 
-            ob.object.pos.y = createParabola(dst*per, dst, 200)+(ob.from.pos.y)
+            ob.object.pos.y = createParabola(dst*per, dst, ob.height)+(ob.from.pos.y)
             
             ob.object.rotation += 8
             //ob.object.pos.x = (x)*(x+)
             return per==1
         },
         object:createSprite({name:"apple",imageSrc:imageSrc,z:15}),
-        time:1,
+        time:1+(randInt(-5,5)*0.01),
         from:from,
         to:to,
+        height:200+(randInt(-40,40)),
     }
 }
 

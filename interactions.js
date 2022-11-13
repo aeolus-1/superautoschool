@@ -12,6 +12,8 @@ var defualtIndex = {
 },
     defaultFoodIndex = {
         incomeDamageMod:0,
+        endofturn:function(){},
+        ongamestart:function(){},
     }
 
 function getFriends(e, army) {
@@ -93,7 +95,7 @@ function giveXp(e, self, amount) {
     warStageAllClear += 1
 
     playAnimation(throwItem("xp.png",self.sprite, e.sprite), ()=>{
-        e.xp += amount
+        givePersonXp(e, amount)
 
         warStageAllClear -= 1
     })
@@ -131,7 +133,7 @@ var personIndex = {
         }
     },
     "jai rodgers":{
-        endofturn:function(e) {
+        ongamestart:function(e) {
             
             var friends = randomFriend(e, e.level)
             friends.forEach(fri => {
@@ -187,7 +189,7 @@ var personIndex = {
         }
     },
     "oscar bw":{
-        endofturn:function(e){
+        ongamestart:function(e){
             if (e.heldFood != undefined) {
                 giveHealth(e, e, e.level)
                 giveAttack(e, e, e.level)
@@ -237,14 +239,53 @@ var personIndex = {
             
             
         
+        },
+        
+    },
+    "mr behan":{
+        onfaint:function(e){
+
+            var pos = 0
+            for (let i = 0; i < e.army.length; i++) {
+                const fri = e.army[i];
+                console.log(fri, e)
+                if (fri.sprite.element.id == e.sprite.element.id) {
+                    pos = i
+                    break
+                }
+            }
+            console.log(pos)
+            
+            if (e.army[pos+1]!=undefined) {
+                if (e.army[pos+1].sprite!=undefined) {
+                giveHealth(e.army[pos+1], e, 2)
+                giveAttack(e.army[pos+1], e, 1)
+                }
+            }
         }
-    }
+    },
+    
 }
 
 var foodIndex = {
     "basil":{
         incomeDamageMod:-1,
-    }
+    },
+    "jelly":{
+        endofturn:function(e, turn) {
+            if (turn==0) {
+                e.stats.h -= 3
+                e.stats.d -= 3
+            }
+            e.heldFood = undefined
+            e.heldFoodSprite.render.visible = false
+        },
+        ongamestart:function(e) {
+            giveAttack(e, e, 3)
+            giveHealth(e, e, 3)
+            
+        }
+    },
 }
 
 function requestInteraction(name) {

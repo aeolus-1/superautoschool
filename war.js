@@ -72,6 +72,8 @@ function startWar(army1S, army2S) {
                 for (let i = 0; i < [...army1,...army2].length; i++) {
                     const person = [...army1,...army2][i];
                     requestInteraction(person.sprite.name).ongamestart(person)
+                    requestFoodInteraction(person.heldFood).ongamestart(person)
+
                 }
                 var checkInterval = setInterval(() => {
                     if (warStageAllClear <= 0) {
@@ -140,6 +142,7 @@ function runDeathAbilitys() {
     for (let i = 0; i < army1.length; i++) {
         const person = army1[i];
         if (person.stats.h <= 0) {
+            console.log(person.sprite.name)
             requestInteraction(person.sprite.name).onfaint(person, newSummons1, newSummons2)
         
 
@@ -197,7 +200,7 @@ function deleteDead() {
     }
 }
 
-function calculateGame() {
+function calculateGame(turn) {
     army1[0].stats.h -= army2[0].stats.d+(requestFoodInteraction(army1[0].heldFood).incomeDamageMod)
     army2[0].stats.h -= army1[0].stats.d+(requestFoodInteraction(army2[0].heldFood).incomeDamageMod)
 
@@ -212,8 +215,11 @@ function calculateGame() {
     army1[0].alive = army1[0].stats.h>0
     army2[0].alive = army2[0].stats.h>0
 
-    requestInteraction(army1[0].sprite.name).endofturn(army1[0])
-    requestInteraction(army2[0].sprite.name).endofturn(army2[0])
+    requestInteraction(army1[0].sprite.name).endofturn(army1[0], turn)
+    requestFoodInteraction(army1[0].heldFood).endofturn(army1[0], turn)
+    requestInteraction(army2[0].sprite.name).endofturn(army2[0], turn)
+    requestFoodInteraction(army2[0].heldFood).endofturn(army2[0], turn)
+
 
     
 
@@ -253,7 +259,7 @@ function stepGame(i) {
         
     
     
-        calculateGame()
+        calculateGame(i)
         runDeathAbilitys()
         deleteDead()
 

@@ -174,7 +174,8 @@ var foodDetailsIndex = {
     },
     "jelly":{
         name:"Jelly",
-        description:()=>{return "Take 1 less damage per hit"},
+        description:()=>{return `Gives + 3❤️ and + 3✊ for one turn`},
+        held:true,
     },
    
 }

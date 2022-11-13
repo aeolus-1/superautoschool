@@ -71,7 +71,8 @@ function drop(e) {
 
   console.log("drop");
   if (makingPurchase ? makePurchase(3) : true) {
-    if (e.srcElement.sprite.person != undefined && !droppingFood) {
+    var isP = e.srcElement.sprite.person
+    if (isP != undefined && !droppingFood && (isP!=undefined)?(isP.sprite.element.id!=element.id):false) {
       e.srcElement.sprite.person.frozen = false;
       e.srcElement.sprite.person.stats.h += 1;
       e.srcElement.sprite.person.stats.d += 1;
@@ -155,7 +156,8 @@ function drop(e) {
 }
 var droppingFood = false,
   makingPurchase = false,
-  droppingName = undefined;
+  droppingName = undefined,
+  droppingId = undefined
 function ondrop(ev) {
   //ev.preventDefault();
   //var data = ev.dataTransfer.getData("text");
@@ -170,7 +172,7 @@ function allowDrop(ev) {
   if (ev.srcElement.sprite.droppable && !droppingFood) {
     ev.preventDefault();
   }
-  if (ev.srcElement.sprite.name == droppingName) {
+  if (ev.srcElement.sprite.name == droppingName && ev.srcElement.id != droppingId) {
     ev.preventDefault();
   }
 }
@@ -178,6 +180,7 @@ function dragstart(ev) {
   droppingFood = ev.target.sprite.person.foodItem;
   makingPurchase = ev.target.sprite.inShop;
   droppingName = ev.target.sprite.name;
+  droppingId = ev.target.id
   ev.dataTransfer.setData(
     "text",
     `${ev.target.id}/${ev.target.sprite.dockedIn.element.id}`
