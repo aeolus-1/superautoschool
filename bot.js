@@ -28,7 +28,7 @@ function createBotPerson(turn) {
                 
         }
     )
-    if (Math.random()<(turn/20)) {
+    if (Math.random()<(turn/30)) {
         setPersonHeldFood(p, ["jelly","basil"][randInt(0,1)])
     }
 
