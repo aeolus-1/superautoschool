@@ -1,13 +1,18 @@
 var defualtIndex = {
     ongamestart:function(){console.log("start")},
     onfaint:function(){console.log("faint")},
-    onfriendsummoned:function(){console.log("friendsummoned")},
+    onfriendsummoned:function(){},
     endofturn:function(){},
+    onhurt:function(){},
 
     onsell:function(){console.log("sold me")},
     onbuy:function(){console.log("bought me")},
     onupgrade:function(){console.log("upgraded me")},
-}
+    onlevelup:function(){}
+},
+    defaultFoodIndex = {
+        incomeDamageMod:0,
+    }
 
 function getFriends(e, army) {
     var friends = []
@@ -24,7 +29,7 @@ function randomFriend(e, amount) {
 
     var friendsList = new Array(),
         fris = getFriends(e, e.army)
-
+    console.log(fris)
     for (let i = 0; i < amount; i++) {
         if (fris.length <= 0) return friendsList
         var num = randInt(0, fris.length-1),
@@ -56,25 +61,40 @@ function randomEnemy(e, amount) {
     
 }
 function giveHealth(e, self, amount) {
-    e.stats.h += amount
     warStageAllClear += 1
-    playAnimation(throwApple(self.sprite, e.sprite), ()=>{
+    playAnimation(throwItem("apple.png", self.sprite, e.sprite), ()=>{
+        e.stats.h += amount
+
         warStageAllClear -= 1
     })
 }
 function giveAttack(e, self, amount) {
-    e.stats.d += amount
     warStageAllClear += 1
 
-    playAnimation(throwFist(self.sprite, e.sprite), ()=>{
+    playAnimation(throwItem("fist.png",self.sprite, e.sprite), ()=>{
+        e.stats.d += amount
+
         warStageAllClear -= 1
     })
 }
 function dealDamage(e, self, amount) {
-    e.stats.h -= amount
     warStageAllClear += 1
 
-    playAnimation(throwFist(self.sprite, e.sprite), ()=>{
+    requestInteraction(e.sprite.name).onhurt(e)
+    
+
+    playAnimation(throwItem("fist.png", self.sprite, e.sprite), ()=>{
+        e.stats.h -= amount+(requestFoodInteraction(e.heldFood).incomeDamageMod)
+
+        warStageAllClear -= 1
+    })
+}
+function giveXp(e, self, amount) {
+    warStageAllClear += 1
+
+    playAnimation(throwItem("xp.png",self.sprite, e.sprite), ()=>{
+        e.xp += amount
+
         warStageAllClear -= 1
     })
 }
@@ -145,7 +165,7 @@ var personIndex = {
     },
     "aiden venter":{
         onsell:function(e){
-            var friends = randomFriend(e, e.level)
+            var friends = randomFriend(e, e.level+1)
             friends.forEach(fri => {
                 giveHealth(fri, e, 2)
             });
@@ -157,12 +177,11 @@ var personIndex = {
         }
     },
     "patty hayes":{
-        onbuy:function(e){
-            var friends = randomFriend(e, 2)
-            console.log(friends)
-            friends.forEach(fri => {
-                giveHealth(fri, e, e.level)
-            });
+        onhurt:function(e){
+            var friend = randomFriend(e, 1)
+            if (friend[0] != undefined) {
+                ((randInt(0,1)==0)?giveHealth:giveAttack)(friend[0], e, e.level)
+            }
             
             
         }
@@ -174,6 +193,28 @@ var personIndex = {
         onsell:function(){
             rollCost = 0
         }
+    },
+    "corey hankinson":{
+        onlevelup:function(e){
+            //giveXp
+            var fri = getFriends(e, e.army)
+            for (let i = 0; i < fri.length; i++) {
+                const friend = fri[i];
+                giveXp(friend, e, e.level)
+            }
+        }
+    },
+    "sophie turner":{
+        onfriendsummoned:function(e, summoned) {
+            giveHealth(summoned, e, e.level)
+            giveAttack(summoned, e, e.level)
+        }
+    }
+}
+
+var foodIndex = {
+    "basil":{
+        incomeDamageMod:-1,
     }
 }
 
@@ -184,6 +225,17 @@ function requestInteraction(name) {
         return {
             ...defualtIndex,
             ...personIndex[name],
+        }
+    }
+}
+
+function requestFoodInteraction(name) {
+    if (foodIndex[name]==undefined) {
+        return defaultFoodIndex
+    } else {
+        return {
+            ...defaultFoodIndex,
+            ...foodIndex[name],
         }
     }
 }

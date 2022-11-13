@@ -17,7 +17,7 @@ function loadSpritesToScreen(sprites) {
             sprite.element.style.left = `${(sprite.pos.x-(sprite.element.width/2))+(htmlSize.x/2)}px`
             sprite.element.style.top = `${(sprite.pos.y-(sprite.element.height/2))+(htmlSize.y/2)}px`
 
-            sprite.element.style.transform = `rotate(${sprite.rotation}deg)`
+            sprite.element.style.transform = `rotate(${sprite.rotation}deg) scale(${sprite.render.scale})`
         }
 
     }
@@ -37,6 +37,8 @@ function renderPerson(person) {
         person.hotbar.pos = v(person.sprite.pos.x, person.sprite.pos.y+70)
         person.attackText.pos = v(person.sprite.pos.x-25, person.sprite.pos.y+70)
         person.healthText.pos = v(person.sprite.pos.x+25, person.sprite.pos.y+70)
+        person.heldFoodSprite.pos = v(person.sprite.pos.x+35, person.sprite.pos.y-35)
+
 
         person.healthText.element.textContent = person.stats.h
         person.attackText.element.textContent = person.stats.d

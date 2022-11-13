@@ -27,7 +27,7 @@ function createParabola(x, d, h) {
     return ((x)*(x-d)*(h/0.25)*(1/(d*d)))
 }
 
-function throwApple(from, to) {
+function throwItem(imageSrc, from, to) {
     console.log(from, to)
     return {
         func:(per, ob)=>{
@@ -41,33 +41,13 @@ function throwApple(from, to) {
             //ob.object.pos.x = (x)*(x+)
             return per==1
         },
-        object:createSprite({name:"apple",imageSrc:"apple.png",z:15}),
+        object:createSprite({name:"apple",imageSrc:imageSrc,z:15}),
         time:1,
         from:from,
         to:to,
     }
 }
-function throwFist(from, to) {
-    console.log(from, to)
-    return {
-        func:(per, ob)=>{
 
-            var dst = -(ob.from.pos.x-ob.to.pos.x)+0.01
-            ob.object.pos.x = ob.from.pos.x+(dst*per)
-
-
-            ob.object.pos.y = createParabola(dst*per, dst, 200)+(ob.from.pos.y)
-            
-            ob.object.rotation += 8
-            //ob.object.pos.x = (x)*(x+)
-            return per==1
-        },
-        object:createSprite({name:"fist",imageSrc:"fist.png",z:15}),
-        time:1,
-        from:from,
-        to:to,
-    }
-}
 function smackPersons(person1, person2) {
     return {
         func:(per, ob)=>{

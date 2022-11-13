@@ -13,6 +13,7 @@ class Sprite {
 
             highlighable:false,
             visible:true,
+            scale:1,
             tied:false,
             z:0,
 
@@ -33,6 +34,7 @@ class Sprite {
             z:this.options.z,
 
             visible:this.options.visible,
+            scale:this.options.scale,
         }
         
         this.onclick = this.options.onclick

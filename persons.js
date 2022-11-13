@@ -68,15 +68,14 @@ var personDetailsIndex = {
         },
     },
 
-    "patty hayes":{
+    "patty hayes": {
+        description: (e)=>{return `Hurt -> give random friend + ${e}❤️ or + ${e}✊`},
+        name: "Patrick Hayes",
         imageSrc:"patty_hayes.png",
-        name:"Patty Hayes",
-
-        baseStats:{
-            h:2,
-            d:2,
+        baseStats: {
+            h: 3,
+            d: 2,
         },
-
     },
     "oscar bw":{
         imageSrc:"oscar_bw.png",
@@ -91,6 +90,11 @@ var personDetailsIndex = {
     "corey hankinson":{
         imageSrc:"corey_hankinson.png",
         name:"Corey Hankison",
+        description:(e)=>{return `Level up -> give all friends + ${e}xp`},
+        stats:{
+            h:2,
+            d:2,
+        }
 
     },
     "jack hildebran":{
@@ -119,6 +123,15 @@ var personDetailsIndex = {
             d: 1,
         },
     },
+    "sophie turner": {
+        description: (e)=>{return `Friend summoned -> give it + ${e}❤️ and + ${e}✊ `},
+        name: "Sophie Turner",
+        baseStats: {
+            h: 1,
+            d: 2,
+        },
+    },
+
 }
 
 var foodDetailsIndex = {
@@ -146,6 +159,16 @@ var foodDetailsIndex = {
             d:3,
         }
     },
+    "basil":{
+        name:"Basil",
+        description:()=>{return "Take 1 less damage per hit"},
+        held:true,
+    },
+    "jelly":{
+        name:"Jelly",
+        description:()=>{return "Take 1 less damage per hit"},
+        held:true,
+    },
    
 }
 function getDetails(str) {
@@ -170,6 +193,7 @@ function getFoodDetals(str) {
             h:1,
             d:1,
         },
+        held:false,
 
         ...foodDetailsIndex[str],
     }

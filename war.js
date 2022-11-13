@@ -25,7 +25,6 @@ function startWar(army1S, army2S) {
         const sp = sprites[i];
         if (sp.person) {
             if (sp.person.frozen) {
-                console.log(sp)
                 frozenIndivuals.push({
                     name:sp.name,
                     stats:sp.person.stats,
@@ -39,7 +38,6 @@ function startWar(army1S, army2S) {
             deleteSprite(sp)
         }
     }
-    console.log(frozenIndivuals)
 
     for (let i = 0; i < texts.length; i++) {
         const text = texts[i];
@@ -106,7 +104,6 @@ function runWalkInAni(army, direction, per) {
     for (let i = 0; i < army.length; i++) {
         const person = army[i];
         var j = (i)
-        console.log(army, person, i)
         person.sprite.targetPos = v(
             (
                 (((htmlSize.x*per)-(htmlSize.x)-100)*direction) - 
@@ -130,7 +127,6 @@ function aniSmash(army, direction, per) {
 }
 function aniBlast(army, direction, per) {
     screenShake = 10
-    console.log("yay")
     army[0].sprite.targetPos.x = ((-100)*direction) - (1200*direction*per)
     army[0].sprite.targetPos.y = 300 - (300*per)
     //army[0].sprite.targetPos.y = 300-(5*per)
@@ -142,14 +138,21 @@ function runDeathAbilitys() {
     for (let i = 0; i < army1.length; i++) {
         const person = army1[i];
         if (person.stats.h <= 0) {
-            console.log(person.sprite.name, requestInteraction(person.sprite.name).onfaint)
             requestInteraction(person.sprite.name).onfaint(person, newSummons)
         
 
         }
     }
+
+    for (let i = 0; i < newSummons.length; i++) {
+        const summon = newSummons[i];
+        for (let j = 0; j < army1.length; j++) {
+            const person = army1[j];
+            requestInteraction(person.sprite.name).onfriendsummoned(person, summon)
+        }
+    }
     army1 = [...newSummons, ...army1]
-    console.log(newSummons)
+
 
     newSummons = []
     for (let i = 0; i < army2.length; i++) {
@@ -160,8 +163,14 @@ function runDeathAbilitys() {
 
         }
     }
+    for (let i = 0; i < newSummons.length; i++) {
+        const summon = newSummons[i];
+        for (let j = 0; j < army2.length; j++) {
+            const person = army2[j];
+            requestInteraction(person.sprite.name).onfriendsummoned(person, summon)
+        }
+    }
     army2 = [...newSummons, ...army2]
-    console.log(newSummons)
 
 
     
@@ -188,9 +197,17 @@ function deleteDead() {
 }
 
 function calculateGame() {
-    army1[0].stats.h -= army2[0].stats.d
-    army2[0].stats.h -= army1[0].stats.d
+    army1[0].stats.h -= army2[0].stats.d+(requestFoodInteraction(army1[0].heldFood).incomeDamageMod)
+    army2[0].stats.h -= army1[0].stats.d+(requestFoodInteraction(army2[0].heldFood).incomeDamageMod)
 
+    if (army2[0].stats.d+(requestFoodInteraction(army1[0].heldFood).incomeDamageMod) > 0) {
+        requestInteraction(army1[0].sprite.name).onhurt(army1[0])
+
+    }
+    if (army1[0].stats.d+(requestFoodInteraction(army2[0].heldFood).incomeDamageMod) > 0) {
+        requestInteraction(army2[0].sprite.name).onhurt(army2[0])
+
+    }
     army1[0].alive = army1[0].stats.h>0
     army2[0].alive = army2[0].stats.h>0
 
@@ -314,7 +331,7 @@ function stepGame(i) {
             Math.min((((new Date().getTime()/1000)-aniSmashTime))/0.05, 1)
             )
 
-            console.log("yay")
+            ("yay")
 
         if (finish) {
             clearInterval(smashInterval)

@@ -64,9 +64,13 @@ var spriteLists = {
         name:"mr behan",
         imageSrc:"mr_behan.png",
     },
+    {
+        name:"sophie turner",
+        imageSrc:"sophie_turner.png",
+    },
     
     {}],
-    food:[
+    food:[/*
     {
         name:"chip salt",
         imageSrc:"chip_salt.png",
@@ -78,7 +82,7 @@ var spriteLists = {
     {
         name:"bundy juice",
         imageSrc:"bundy_juice.png",
-    },
+    },*/
     {
         name:"basil",
         imageSrc:"basil.png",

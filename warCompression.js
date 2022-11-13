@@ -9,7 +9,10 @@ function compressArmy(army) {
             level:person.person.level,
             xp:person.person.xp,
             nextUpgrade:person.person.nextUpgrade,
+
+            heldFood:person.person.heldFood,
         })
+
     }
 
 
@@ -40,12 +43,12 @@ function decompressArmy(armyStr) {
                     
             }
         )
+        if (person.heldFood != undefined) setPersonHeldFood(p, person.heldFood)
         armyMembers.push(p)
         p.order = person.order
         p.army = armyMembers
     }
 
-    console.log(armyMembers)
 
     
     return armyMembers

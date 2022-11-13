@@ -57,7 +57,6 @@ function unhover(element) {
     element.sprite.person.ability.render.visible = false;
     element.sprite.person.abilityText.render.visible = false;
     element.sprite.person.nameText.render.visible = false;
-
   }
   if (element.sprite.render.hoverSrc)
     element.setAttribute("src", "imgs/" + element.sprite.render.src);
@@ -71,46 +70,59 @@ function drop(e) {
     sourceStone = document.getElementById(data[1]);
 
   console.log("drop");
-  if ((makingPurchase)?makePurchase(3):true) {
-    if (e.srcElement.sprite.person!=undefined) {
-      e.srcElement.sprite.person.frozen = false
-          e.srcElement.sprite.person.stats.h += 1
-          e.srcElement.sprite.person.stats.d += 1
-          e.srcElement.sprite.person.xp += 1
-          if (e.srcElement.sprite.person.xp>=e.srcElement.sprite.person.nextUpgrade) {
-            e.srcElement.sprite.person.level += 1
-            e.srcElement.sprite.person.xp = 0
-            e.srcElement.sprite.person.nextUpgrade = Math.ceil(e.srcElement.sprite.person.nextUpgrade*1.5)
+  if (makingPurchase ? makePurchase(3) : true) {
+    if (e.srcElement.sprite.person != undefined && !droppingFood) {
+      e.srcElement.sprite.person.frozen = false;
+      e.srcElement.sprite.person.stats.h += 1;
+      e.srcElement.sprite.person.stats.d += 1;
+      givePersonXp(e.srcElement.sprite.person, 1)
 
-
-          }
-
-          sourceStone.sprite.docked = undefined
-
-          //playAnimation(throwApple(e.srcElement.sprite, e.srcElement.sprite), ()=>{})
-
-          deletePerson(element.sprite.person)
-          selectedSprite = undefined;
-          gameHighlight.pos = v(-10000, -10000);
-    } else {
-
+      if (makingPurchase) {
+        requestInteraction(e.srcElement.sprite.name).onbuy(
+          e.srcElement.sprite.person
+        );
+      }
       
+
+      sourceStone.sprite.docked = undefined;
+
+      //playAnimation(throwApple(e.srcElement.sprite, e.srcElement.sprite), ()=>{})
+
+      deletePerson(element.sprite.person);
+      selectedSprite = undefined;
+      gameHighlight.pos = v(-10000, -10000);
+    } else {
       if (droppingFood) {
-          e.srcElement.sprite.person.frozen = false
-          var stats = getFoodDetals(element.sprite.name).stats
-          e.srcElement.sprite.person.stats.h += stats.h
-          e.srcElement.sprite.person.stats.d += stats.d
+        var details = getFoodDetals(element.sprite.name);
+        console.log(details);
+        if (details.held) {
+          e.srcElement.sprite.person.frozen = false;
 
-          sourceStone.sprite.docked = undefined
+          setPersonHeldFood(e.srcElement.sprite.person, element.sprite.name);
 
-          playAnimation(throwApple(e.srcElement.sprite, e.srcElement.sprite), ()=>{})
-
-          deletePerson(element.sprite.person)
+          sourceStone.sprite.docked = undefined;
+          deletePerson(element.sprite.person);
           selectedSprite = undefined;
           gameHighlight.pos = v(-10000, -10000);
+        } else {
+          e.srcElement.sprite.person.frozen = false;
+          var stats = details.stats;
+          e.srcElement.sprite.person.stats.h += stats.h;
+          e.srcElement.sprite.person.stats.d += stats.d;
+
+          sourceStone.sprite.docked = undefined;
+
+          playAnimation(
+            throwApple(e.srcElement.sprite, e.srcElement.sprite),
+            () => {}
+          );
+
+          deletePerson(element.sprite.person);
+          selectedSprite = undefined;
+          gameHighlight.pos = v(-10000, -10000);
+        }
       } else {
-          
-          if (!e.srcElement.sprite.srcStone.ele.docked) {
+        if (!e.srcElement.sprite.srcStone.ele.docked) {
           gui["sell"].render.visible = false;
           gui["freeze"].render.visible = false;
           sourceStone.sprite.docked = undefined;
@@ -120,28 +132,28 @@ function drop(e) {
           selectedSprite = undefined;
           gameHighlight.pos = v(-10000, -10000);
           placeSpriteInStone(element.sprite, e.srcElement.sprite.srcStone);
-          army1.push(element.sprite.person)
-          element.sprite.person.army = army1
+          army1.push(element.sprite.person);
+          element.sprite.person.army = army1;
           if (makingPurchase) {
-              requestInteraction(element.sprite.name).onbuy(element.sprite.person)
-
+            requestInteraction(element.sprite.name).onbuy(
+              element.sprite.person
+            );
           }
 
           element.sprite.inShop = false;
-
-          
-          } else if (e.srcElement.sprite.srcStone.ele.docked.name){}
-          console.log(e.srcElement.sprite.srcStone.ele.docked.name)
+        } else if (e.srcElement.sprite.srcStone.ele.docked.name) {
+        }
+        console.log(e.srcElement.sprite.srcStone.ele.docked.name);
       }
+    }
   }
-}
 
   //placeSpriteInStone(element.sprite, )
   //  = {...e.srcElement.sprite.pos}
 }
 var droppingFood = false,
-    makingPurchase = false,
-    droppingName = undefined
+  makingPurchase = false,
+  droppingName = undefined;
 function ondrop(ev) {
   //ev.preventDefault();
   //var data = ev.dataTransfer.getData("text");
@@ -162,8 +174,8 @@ function allowDrop(ev) {
 }
 function dragstart(ev) {
   droppingFood = ev.target.sprite.person.foodItem;
-  makingPurchase = ev.target.sprite.inShop
-  droppingName = ev.target.sprite.name
+  makingPurchase = ev.target.sprite.inShop;
+  droppingName = ev.target.sprite.name;
   ev.dataTransfer.setData(
     "text",
     `${ev.target.id}/${ev.target.sprite.dockedIn.element.id}`
@@ -171,5 +183,4 @@ function dragstart(ev) {
   ev.target.sprite.person.ability.render.visible = false;
   ev.target.sprite.person.abilityText.render.visible = false;
   ev.target.sprite.person.nameText.render.visible = false;
-
 }
