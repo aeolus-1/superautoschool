@@ -18,7 +18,7 @@ const socket = io("https://still-garden-51639.herokuapp.com/", {
   socket.on("returningList", function (data) {
     console.log(data);
     data = data.a
-    var lists = data[gameState.turn]
+    var lists = data[gameState.turn] || []
     if (lists.length<=0) {
         versusArmy = getRandomArmy()
     } else {

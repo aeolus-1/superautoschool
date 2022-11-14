@@ -4,6 +4,14 @@ var gui = {},
 
 function createGui() {
 
+    gui["looking-text"] = createText({
+        content:"looking for player",
+        pos:v(0, -100),
+        z:10,
+        visible:false,
+        font:75,
+    })
+
     //==========================    coins   ==========================
     gui["coins"] = createSprite({
         imageSrc:"shortBlock.png",
@@ -118,27 +126,65 @@ function createGui() {
         pos:v((htmlSize.x*0.5)-224, (htmlSize.y*0.5)-60),
         z:10,
         onclick:function(e){
-            socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
-            
-            versusArmy = undefined
-            var repeatRequest = setInterval(() => {
-                g()
+
+            if (socket.connected) {
+                gui["looking-text"].render.visible = true
                 socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
+                playerSearchStartTime = (new Date().getTime())
+                versusArmy = undefined
+                var repeatRequest = setInterval(() => {
+                    g()
+                    socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
+                    
 
+                }, 1200);
 
-            }, 1200);
+                var checkInterval = setInterval(() => {
+                    if (versusArmy != undefined || versusArmy != null) {
+                        gui["looking-text"].render.visible = false
+                        clearInterval(checkInterval)
+                        clearInterval(repeatRequest)
+                        gameState.turn += 1
+                        var newArmy = JSON.stringify(versusArmy.string)
+                        console.log(newArmy)
+                        startWar(
+                            compressArmy(getArmy()),
+                            newArmy,
+                        )
+                    } else if ((new Date().getTime())-playerSearchStartTime > 10*1000) {
+                        gui["looking-text"].render.visible = false
+                        clearInterval(checkInterval)
+                        clearInterval(repeatRequest)
+                        gameState.turn += 1
+                        var randArmy = getRandomArmy()
+                        console.log(randArmy)
+                        var armySprites = []
+                        for (let i = 0; i < randArmy.length; i++) {
+                            const person = randArmy[i];
+                            armySprites.push(person.sprite)
+                        }
 
-            var checkInterval = setInterval(() => {
-                if (versusArmy != undefined || versusArmy != null) {
-                    clearInterval(checkInterval)
-                    clearInterval(repeatRequest)
-                    gameState.turn += 1
-                    startWar(
-                        compressArmy(getArmy()),
-                        versusArmy,
-                    )
-                }
-            }, 100);
+                        startWar(
+                            compressArmy(getArmy()),
+                            compressArmy(armySprites),
+                        )
+                    }
+                }, 100);
+            } else {
+                gameState.turn += 1
+                        var randArmy = getRandomArmy()
+                        console.log(randArmy)
+                        var armySprites = []
+                        for (let i = 0; i < randArmy.length; i++) {
+                            const person = randArmy[i];
+                            armySprites.push(person.sprite)
+                        }
+
+                        startWar(
+                            compressArmy(getArmy()),
+                            compressArmy(armySprites),
+                        )
+            }
             
         },
     })

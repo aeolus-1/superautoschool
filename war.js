@@ -17,9 +17,11 @@ var army1 = [],
     frozenIndivuals = [],
 
 
-    versusArmy = undefined
+    versusArmy = undefined,
+    playerSearchStartTime = 0
 
 function startWar(army1S, army2S) {
+
     preArmy = army1S
     document.body.style["background-image"] = 'url("imgs/backWar.png")'
     document.body.style["background-color"] ="black"
@@ -51,9 +53,9 @@ function startWar(army1S, army2S) {
 
 
 
-
+    console.log(army2S)
     army1 = decompressArmy(army1S)
-    army2 = decompressArmy(JSON.stringify(army2S.string))
+    army2 = decompressArmy(army2S)
 
     targetPosInterval = setInterval(() => {
         updateSpritePos([...army1, ...army2])
