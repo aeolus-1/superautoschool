@@ -35,7 +35,9 @@ function throwItem(imageSrc, from, to) {
             var dst = -(ob.from.pos.x-ob.to.pos.x)+0.01
             ob.object.pos.x = ob.from.pos.x+(dst*per)
 
-            ob.object.pos.y = createParabola(dst*per, dst, ob.height)+(ob.from.pos.y)
+            var diff =ob.to.pos.y-ob.from.pos.y
+
+            ob.object.pos.y = createParabola(dst*per, dst, ob.height)+(ob.from.pos.y)+(diff*per)
             
             ob.object.rotation += 8
             //ob.object.pos.x = (x)*(x+)

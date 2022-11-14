@@ -71,7 +71,6 @@ function startGame(preArmy, frozenIndivuals) {
         const text = texts[i];
         deleteText(text)
     }
-    gameState.coins = 10
 
 
     document.body.style["background-image"] = 'url("imgs/back.png")'

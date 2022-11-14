@@ -26,6 +26,8 @@ function startWar(army1S, army2S) {
     document.body.style["background-image"] = 'url("imgs/backWar.png")'
     document.body.style["background-color"] ="black"
     frozenIndivuals = []
+    gameState.coins = 10
+
     for (let i = 0; i < sprites.length; i++) {
         const sp = sprites[i];
         if (sp.person) {
@@ -48,6 +50,21 @@ function startWar(army1S, army2S) {
         const text = texts[i];
         if (!text.tied) deleteText(text)
     }
+
+
+    gui["player1-text"] = createText({
+        content:"player1 name",
+        pos:v(-htmlSize.x*0.25, 150),
+        z:10,
+        font:50,
+    })
+
+    gui["player2-text"] = createText({
+        content:"player2 name",
+        pos:v(htmlSize.x*0.25, 150),
+        z:10,
+        font:50,
+    })
 
 
 

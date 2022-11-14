@@ -9,7 +9,8 @@ var defualtIndex = {
     onsell:function(){console.log("sold me")},
     onbuy:function(){console.log("bought me")},
     onupgrade:function(){console.log("upgraded me")},
-    onlevelup:function(){}
+    onlevelup:function(){},
+    onendgameturn:function(){},
 },
     defaultFoodIndex = {
         incomeDamageMod:0,
@@ -62,6 +63,29 @@ function randomEnemy(e, amount) {
     
         
     
+}
+function replaceShopItem(e, num, item) {
+    warStageAllClear+= 1
+        playAnimation(throwItem(item.sprite.render.src, e.sprite, stonePos[`shopFood${num}`].ele), ()=>{
+            gameState.coins += 3
+
+            var stone = stonePos[`shopFood${num}`].ele
+            deletePerson(stone.docked.person)
+            item.sprite.render.visible = true
+            placeSpriteInStone(item.sprite, stonePos[`shopFood${num}`])
+    
+            warStageAllClear -= 1
+        })
+}
+function giveCoins(e, amount) {
+    if (e.sprite.pos.x < 0) {
+        warStageAllClear+= 1
+        playAnimation(throwItem("icons/coin.png", e.sprite, gui["player1-text"]), ()=>{
+            gameState.coins += amount
+    
+            warStageAllClear -= 1
+        })
+    }
 }
 function giveHealth(e, self, amount) {
     warStageAllClear += 1
@@ -134,11 +158,11 @@ var personIndex = {
         }
     },
     "jai rodgers":{
-        ongamestart:function(e) {
+        onendgameturn:function(e) {
             
             var friends = randomFriend(e, e.level)
             friends.forEach(fri => {
-                giveHealth(fri, e, 2)
+                giveHealth(fri, e, 1)
             });
         },
     },
@@ -176,7 +200,13 @@ var personIndex = {
     },
     "lily derwin":{
         onsell:function(e){
-
+            replaceShopItem(e, 1, createPerson(
+                {sprite:{
+                    name:"bundy juice",
+                    imageSrc:"bundy_juice.png",
+                    visible:false,
+                }, foodItem:true}
+            ))
         }
     },
     "patty hayes":{
@@ -271,6 +301,11 @@ var personIndex = {
                 var enemys = randomEnemy(e, 1)
                 dealDamage(enemys[0], e, 1)
             }
+        }
+    },
+    "ashwin s":{
+        onhurt:function (e) {
+            giveCoins(e, e.level)
         }
     }
     

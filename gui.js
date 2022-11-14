@@ -127,64 +127,75 @@ function createGui() {
         z:10,
         onclick:function(e){
 
-            if (socket.connected) {
-                gui["looking-text"].render.visible = true
-                socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
-                playerSearchStartTime = (new Date().getTime())
-                versusArmy = undefined
-                var repeatRequest = setInterval(() => {
-                    g()
-                    socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
-                    
-
-                }, 1200);
-
-                var checkInterval = setInterval(() => {
-                    if (versusArmy != undefined || versusArmy != null) {
-                        gui["looking-text"].render.visible = false
-                        clearInterval(checkInterval)
-                        clearInterval(repeatRequest)
-                        gameState.turn += 1
-                        var newArmy = JSON.stringify(versusArmy.string)
-                        console.log(newArmy)
-                        startWar(
-                            compressArmy(getArmy()),
-                            newArmy,
-                        )
-                    } else if ((new Date().getTime())-playerSearchStartTime > 10*1000) {
-                        gui["looking-text"].render.visible = false
-                        clearInterval(checkInterval)
-                        clearInterval(repeatRequest)
-                        gameState.turn += 1
-                        var randArmy = getRandomArmy()
-                        console.log(randArmy)
-                        var armySprites = []
-                        for (let i = 0; i < randArmy.length; i++) {
-                            const person = randArmy[i];
-                            armySprites.push(person.sprite)
-                        }
-
-                        startWar(
-                            compressArmy(getArmy()),
-                            compressArmy(armySprites),
-                        )
-                    }
-                }, 100);
-            } else {
-                gameState.turn += 1
-                        var randArmy = getRandomArmy()
-                        console.log(randArmy)
-                        var armySprites = []
-                        for (let i = 0; i < randArmy.length; i++) {
-                            const person = randArmy[i];
-                            armySprites.push(person.sprite)
-                        }
-
-                        startWar(
-                            compressArmy(getArmy()),
-                            compressArmy(armySprites),
-                        )
+            for (let i = 0; i < army1.length; i++) {
+                const person = army1[i];
+                requestInteraction(person.sprite.name).onendgameturn(person)
             }
+            var checkInterval0 = setInterval(() => {
+                if (warStageAllClear <= 0) {
+                    clearInterval(checkInterval0)
+                    if (socket.connected) {
+                        gui["looking-text"].render.visible = true
+                        socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
+                        playerSearchStartTime = (new Date().getTime())
+                        versusArmy = undefined
+                        var repeatRequest = setInterval(() => {
+                            g()
+                            socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
+                            
+        
+                        }, 1200);
+        
+                        var checkInterval = setInterval(() => {
+                            if (versusArmy != undefined || versusArmy != null) {
+                                gui["looking-text"].render.visible = false
+                                clearInterval(checkInterval)
+                                clearInterval(repeatRequest)
+                                gameState.turn += 1
+                                var newArmy = JSON.stringify(versusArmy.string)
+                                console.log(newArmy)
+                                startWar(
+                                    compressArmy(getArmy()),
+                                    newArmy,
+                                )
+                            } else if ((new Date().getTime())-playerSearchStartTime > 10*1000) {
+                                gui["looking-text"].render.visible = false
+                                clearInterval(checkInterval)
+                                clearInterval(repeatRequest)
+                                gameState.turn += 1
+                                var randArmy = getRandomArmy()
+                                console.log(randArmy)
+                                var armySprites = []
+                                for (let i = 0; i < randArmy.length; i++) {
+                                    const person = randArmy[i];
+                                    armySprites.push(person.sprite)
+                                }
+        
+                                startWar(
+                                    compressArmy(getArmy()),
+                                    compressArmy(armySprites),
+                                )
+                            }
+                        }, 100);
+                    } else {
+                        gameState.turn += 1
+                                var randArmy = getRandomArmy()
+                                console.log(randArmy)
+                                var armySprites = []
+                                for (let i = 0; i < randArmy.length; i++) {
+                                    const person = randArmy[i];
+                                    armySprites.push(person.sprite)
+                                }
+        
+                                startWar(
+                                    compressArmy(getArmy()),
+                                    compressArmy(armySprites),
+                                )
+                    }
+                }
+            }, 10)
+
+            
             
         },
     })

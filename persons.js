@@ -135,8 +135,8 @@ var personDetailsIndex = {
         description: (e)=>{return `No ability, just raw strength`},
         name: "Jack Hildedad",
         baseStats: {
-            h: 7,
-            d: 7,
+            h: 5,
+            d: 5,
         },
     },
     "jacob said": {
@@ -145,6 +145,14 @@ var personDetailsIndex = {
         baseStats: {
             h: 3,
             d: 2,
+        },
+    },
+    "ashwin s": {
+        description: (e)=>{return `Hurt -> Give +${e} coin`},
+        name: "Curry Guzzuler",
+        baseStats: {
+            h: 1,
+            d: 1,
         },
     },
 

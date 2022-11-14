@@ -68,6 +68,10 @@ var spriteLists = {
         name:"sophie turner",
         imageSrc:"sophie_turner.png",
     },
+    {
+        name:"ashwin s",
+        imageSrc:"ashwin_s.png",
+    },
     
     {}],
     food:[
