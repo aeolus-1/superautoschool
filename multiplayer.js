@@ -34,6 +34,7 @@ const socket = io("https://still-garden-51639.herokuapp.com/", {
 
         var random = safeNames[randInt(0, safeNames.length-1)]
         
+        army2Name = lists[random].name
         versusArmy = lists[random]
     }
     
