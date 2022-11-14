@@ -14,7 +14,10 @@ var army1 = [],
     warStageAllClear = 0,
     targetPosInterval,
 
-    frozenIndivuals = []
+    frozenIndivuals = [],
+
+
+    versusArmy = undefined
 
 function startWar(army1S, army2S) {
     preArmy = army1S
@@ -50,7 +53,7 @@ function startWar(army1S, army2S) {
 
 
     army1 = decompressArmy(army1S)
-    army2 = getRandomArmy()
+    army2 = decompressArmy(JSON.stringify(army2S.string))
 
     targetPosInterval = setInterval(() => {
         updateSpritePos([...army1, ...army2])

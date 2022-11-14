@@ -118,11 +118,28 @@ function createGui() {
         pos:v((htmlSize.x*0.5)-224, (htmlSize.y*0.5)-60),
         z:10,
         onclick:function(e){
-            gameState.turn += 1
-            startWar(
-                compressArmy(getArmy()),
-                getArmy(),
-            )
+            socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
+            
+            versusArmy = undefined
+            var repeatRequest = setInterval(() => {
+                g()
+                socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
+
+
+            }, 1200);
+
+            var checkInterval = setInterval(() => {
+                if (versusArmy != undefined || versusArmy != null) {
+                    clearInterval(checkInterval)
+                    clearInterval(repeatRequest)
+                    gameState.turn += 1
+                    startWar(
+                        compressArmy(getArmy()),
+                        versusArmy,
+                    )
+                }
+            }, 100);
+            
         },
     })
     gui["freeze"] = createSprite({

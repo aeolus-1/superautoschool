@@ -50,11 +50,12 @@ var personDetailsIndex = {
         },
     },
     "aiden venter": {
-        description: (e)=>{return `Sell -> give ${e+1} random friends + 1❤️`},
+        description: (e)=>{return `Sell -> give 2 random friends + ${e}❤️`},
         name: "Aiden Venter",
+        tier:1,
         baseStats: {
-            h: 1,
-            d: 1,
+            h: 3,
+            d: 2,
         },
     },
     "lily derwin": {
@@ -105,16 +106,7 @@ var personDetailsIndex = {
         }
 
     },
-    "jack hildebran":{
-        imageSrc:"jack_hildebran.png",
-        name:"Jack Hildebran",
-
-    },
-    "jacob said":{
-        imageSrc:"jacob_said.png",
-        name:"Jacob Said",
-
-    },
+   
     "mr behan": {
         description: (e)=>{return `Faint -> Give closest friend + ${e+1}✊ and + ${e+1}❤️ and ${e} exp`},
         name: "Mr. Behan",
