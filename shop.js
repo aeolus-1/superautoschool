@@ -91,6 +91,11 @@ var spriteLists = {
         name:"jelly",
         imageSrc:"jelly.png",
     },
+    {
+        name:"chip chicken",
+        imageSrc:"chip_chicken.png"
+
+    }
 ]
     
 }

@@ -167,6 +167,15 @@ var foodDetailsIndex = {
             h:0,
         }
     },
+    "chip chicken":{
+        name:"Red Rock Chicken Deli Chips ",
+        description:()=>{return "Gives + 2❤️"},
+        imageSrc:"chip_chicken.png",
+        stats:{
+            d:0,
+            h:2,
+        }
+    },
     "calippo":{
         name:"Calippo",
         description:()=>{return "Gives - 1❤️ and + 3✊"},
@@ -182,7 +191,7 @@ var foodDetailsIndex = {
     },
     "jelly":{
         name:"Jelly",
-        description:()=>{return `Gives + 3❤️ and + 3✊ for one turn`},
+        description:()=>{return `Gain + 3❤️ and + 3✊ for one attack`},
         held:true,
     },
    
