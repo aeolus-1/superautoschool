@@ -133,15 +133,16 @@ function createGui() {
             }
             var checkInterval0 = setInterval(() => {
                 if (warStageAllClear <= 0) {
+                    army1Name = document.getElementById("nameInput").value
                     clearInterval(checkInterval0)
                     if (socket.connected) {
                         gui["looking-text"].render.visible = true
-                        socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
+                        socket.emit("submitArmy",{id:browserId,turn:gameState.turn,name:document.getElementById("nameInput").value,army:compressArmy(getArmy())})
                         playerSearchStartTime = (new Date().getTime())
                         versusArmy = undefined
                         var repeatRequest = setInterval(() => {
                             g()
-                            socket.emit("submitArmy",{id:browserId,turn:gameState.turn,army:compressArmy(getArmy())})
+                            socket.emit("submitArmy",{id:browserId,turn:gameState.turn,name:document.getElementById("nameInput").value,army:compressArmy(getArmy())})
                             
         
                         }, 1200);

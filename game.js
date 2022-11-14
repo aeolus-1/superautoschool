@@ -86,6 +86,9 @@ function startGame(preArmy, frozenIndivuals) {
 
     genShop(frozenIndivuals)
 
+    document.getElementById("nameInput").value = army1Name
+
+
     
 
     if (preArmy !=undefined) {

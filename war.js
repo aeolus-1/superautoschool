@@ -10,6 +10,8 @@ function getArmy() {
 }
 var army1 = [],
     army2,
+    army1Name = "untitled",
+    army2Name = "untitled",
     preArmy,
     warStageAllClear = 0,
     targetPosInterval,
@@ -53,14 +55,14 @@ function startWar(army1S, army2S) {
 
 
     gui["player1-text"] = createText({
-        content:"player1 name",
+        content:army1Name,
         pos:v(-htmlSize.x*0.25, 150),
         z:10,
         font:50,
     })
 
     gui["player2-text"] = createText({
-        content:"player2 name",
+        content:army2Name,
         pos:v(htmlSize.x*0.25, 150),
         z:10,
         font:50,
@@ -70,7 +72,6 @@ function startWar(army1S, army2S) {
 
 
 
-    console.log(army2S)
     army1 = decompressArmy(army1S)
     army2 = decompressArmy(army2S)
 

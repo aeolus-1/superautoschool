@@ -32,6 +32,8 @@ function createBotPerson(turn) {
         setPersonHeldFood(p, ["jelly","basil"][randInt(0,1)])
     }
 
+    army2Name = names[randInt(0,names.length-1)].split(",")[0]
+
     var buffs = randInt(0, Math.floor(turn*0.75))
     p.stats.h += buffs
     p.stats.d += buffs
