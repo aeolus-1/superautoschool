@@ -50,7 +50,7 @@ function randomFriend(e, amount) {
 function randomEnemy(e, amount) {
 
     var friendsList = new Array(),
-        fris = (e.army == army1)?army2:army1
+        fris = shuffle([...(e.army == army1)?army2:army1])
 
     for (let i = 0; i < amount; i++) {
         if (fris.length <= 0) return friendsList
@@ -59,7 +59,10 @@ function randomEnemy(e, amount) {
         friendsList.push(returnOb)
     }
 
-    return friendsList
+
+
+
+    return fris.sort((a, b) => 0.5 - Math.random());
     
         
     
@@ -82,6 +85,8 @@ function giveCoins(e, amount) {
         warStageAllClear+= 1
         playAnimation(throwItem("icons/coin.png", e.sprite, gui["player1-text"]), ()=>{
             gameState.coins += amount
+            gui["player1-text"].render.targetScaleV = 0.9
+            gui["coins-icon"].render.targetScaleV += 1
     
             warStageAllClear -= 1
         })
@@ -92,6 +97,9 @@ function giveHealth(e, self, amount) {
     playAnimation(throwItem("apple.png", self.sprite, e.sprite), ()=>{
         e.stats.h += amount
 
+        e.sprite.render.targetScaleV += 0.5
+
+
         warStageAllClear -= 1
     })
 }
@@ -100,6 +108,8 @@ function giveAttack(e, self, amount) {
 
     playAnimation(throwItem("fist.png",self.sprite, e.sprite), ()=>{
         e.stats.d += amount
+
+        e.sprite.render.targetScaleV += 0.5
 
         warStageAllClear -= 1
     })
@@ -121,6 +131,8 @@ function giveXp(e, self, amount) {
 
     playAnimation(throwItem("xp.png",self.sprite, e.sprite), ()=>{
         givePersonXp(e, amount)
+
+        e.sprite.render.targetScaleV += 1
 
         warStageAllClear -= 1
     })
@@ -148,12 +160,16 @@ var personIndex = {
     "ben reef":{
         ongamestart:function(e){
             for (let i = 0; i < e.level; i++) {
-                var enemys = randomEnemy(e, 1)
-                dealDamage(enemys[0], e, 1)
+                setTimeout(() => {
+                    var enemys = randomEnemy(e, 1)
+
+                    dealDamage(enemys[0], e, 1)
+                }, 300*i);
+                
             }
             
             
-            //console.log(randomEnemy(e, 1))
+
             
         }
     },

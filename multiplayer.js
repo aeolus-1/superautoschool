@@ -1,7 +1,7 @@
 var browserId = self.crypto.randomUUID(),
     redonePlayers = []
 
-const socket = io("https://still-garden-51639.herokuapp.com/", {
+var socket = io("https://still-garden-51639.herokuapp.com/", {
     reconnection: false,
   });
 
@@ -30,7 +30,7 @@ const socket = io("https://still-garden-51639.herokuapp.com/", {
             if (name!=browserId) safeNames.push(name)
         }
 
-        console
+        
 
         var random = safeNames[randInt(0, safeNames.length-1)]
         

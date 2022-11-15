@@ -17,7 +17,15 @@ function loadSpritesToScreen(sprites) {
             sprite.element.style.left = `${(sprite.pos.x-(sprite.element.width/2))+(htmlSize.x/2)}px`
             sprite.element.style.top = `${(sprite.pos.y-(sprite.element.height/2))+(htmlSize.y/2)}px`
 
-            sprite.element.style.transform = `rotate(${sprite.rotation}deg) scale(${sprite.render.scale})`
+            sprite.element.style.transform = `rotate(${sprite.rotation+sprite.render.targetRotation}deg) scale(${sprite.render.scale*(1-((1-sprite.render.targetScale)*0.1))})`
+        
+            sprite.render.targetScale += sprite.render.targetScaleV
+            sprite.render.targetScaleV += (sprite.render.scale-sprite.render.targetScale)*0.2
+            sprite.render.targetScaleV *= 0.8
+
+            
+            sprite.render.targetRotation += sprite.render.targetRotationV
+            
         }
 
     }
@@ -40,7 +48,7 @@ function renderPerson(person) {
         person.heldFoodSprite.pos = v(person.sprite.pos.x+35, person.sprite.pos.y-35)
 
 
-        person.healthText.element.textContent = person.stats.h
+        person.healthText.element.textContent = Math.max(person.stats.h, 0)
         person.attackText.element.textContent = person.stats.d
 
         if (!person.sprite.inShop) {

@@ -155,6 +155,17 @@ var personDetailsIndex = {
             d: 1,
         },
     },
+    "rylan holding":{
+        imageSrc:"rylan_holding.png",
+        name:"Rylan Holding",
+        description:(e)=>{return `Does somehting later`},
+        stats:{
+            h:2,
+            d:2,
+        }
+
+    },
+   
 
 }
 

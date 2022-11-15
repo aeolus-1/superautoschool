@@ -72,6 +72,10 @@ var spriteLists = {
         name:"ashwin s",
         imageSrc:"ashwin_s.png",
     },
+    {
+        name:"rylan holding",
+        imageSrc:"rylan_holding.png",
+    },
     
     {}],
     food:[
@@ -108,7 +112,13 @@ function genShop(frozenIndivuals=[]) {
     clearShop()
     function sP(stone, list, foodItem=false,) {
         if ((stone.ele.docked!=undefined)?!stone.ele.docked.person.frozen:true) {
-
+        var tierChances = []
+        for (let i = 0; i < 6; i++) {
+            tierChances.push(
+                [(1-((1-getChances(Math.min(gameState.turn, 9), i+1))*0.95))*Math.random(), i]
+            )
+        }
+        console.log(tierChances.sort((a,b)=>{return a[0]-b[0]})[5][1])
         var person = createPerson({sprite:list[randInt(0,list.length-1)], foodItem:foodItem}),
             sprite = person.sprite
 

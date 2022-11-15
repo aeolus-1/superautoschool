@@ -76,6 +76,7 @@ function drop(e) {
       e.srcElement.sprite.person.frozen = false;
       e.srcElement.sprite.person.stats.h += 1;
       e.srcElement.sprite.person.stats.d += 1;
+      e.srcElement.sprite.render.targetScaleV += 0.7
       givePersonXp(e.srcElement.sprite.person, 1)
 
       if (makingPurchase) {
@@ -83,6 +84,8 @@ function drop(e) {
           e.srcElement.sprite.person
         );
       }
+
+      
       
 
       sourceStone.sprite.docked = undefined;
@@ -117,6 +120,7 @@ function drop(e) {
             () => {
               e.srcElement.sprite.person.stats.h += stats.h;
           e.srcElement.sprite.person.stats.d += stats.d;
+          e.srcElement.sprite.render.targetScaleV += 1
             }
           );
 
@@ -143,6 +147,7 @@ function drop(e) {
             );
           }
 
+          element.sprite.render.targetScaleV = 0.6
           element.sprite.inShop = false;
         } else if (e.srcElement.sprite.srcStone.ele.docked.name) {
         }

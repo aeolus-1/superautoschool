@@ -35,6 +35,11 @@ class Sprite {
 
             visible:this.options.visible,
             scale:this.options.scale,
+
+            targetScale:1,
+            targetScaleV:0,
+            targetRotation:0,
+            targetRotationV:0,
         }
         
         this.onclick = this.options.onclick
