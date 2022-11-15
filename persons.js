@@ -188,6 +188,17 @@ var personDetailsIndex = {
         }
 
     },
+        "charlotte willis":{
+        imageSrc:"charlotte_willis.png",
+        name:"Charlotte Willis",
+        description:(e)=>{return `give all people in the shop + ${2*e}❤️ and + ${2*e}✊`},
+        tier:6,
+        stats:{
+            h:6,
+            d:3,
+        }
+
+    },
    
 
 }
