@@ -108,6 +108,13 @@ var spriteLists = {
     
 }
 
+function getPlayersofTier(tier, players) {
+    for (let i = 0; i < players.length; i++) {
+        const player = players[i];
+        console.log(player.name)
+    }
+}
+
 function genShop(frozenIndivuals=[]) {
     clearShop()
     function sP(stone, list, foodItem=false,) {
@@ -118,7 +125,9 @@ function genShop(frozenIndivuals=[]) {
                 [(1-((1-getChances(Math.min(gameState.turn, 9), i+1))*0.95))*Math.random(), i]
             )
         }
-        console.log(tierChances.sort((a,b)=>{return a[0]-b[0]})[5][1])
+        var choosenTier = tierChances.sort((a,b)=>{return a[0]-b[0]})[5][1],
+            possiblePlayers = getPlayersofTier(choosenTier, spriteLists.players)
+        
         var person = createPerson({sprite:list[randInt(0,list.length-1)], foodItem:foodItem}),
             sprite = person.sprite
 
