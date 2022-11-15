@@ -8,7 +8,12 @@ function clearShop() {
 }
 
 var spriteLists = {
-    players:[{
+    players:[
+    {
+        name:"clancy reed",
+        imageSrc:"clancy_reed.png"
+    },    
+    {
         name:"ben reef",
         imageSrc:"ben_reef.png",
     },

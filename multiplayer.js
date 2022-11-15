@@ -34,8 +34,11 @@ var socket = io((true)?"https://sahserver.xl83.dev/":"https://still-garden-51639
 
         var random = safeNames[randInt(0, safeNames.length-1)]
         
-        army2Name = lists[random].name
-        versusArmy = lists[random]
+        if (lists[random] != undefined) {
+            army2Name = lists[random].name
+            versusArmy = lists[random]
+        }
+        
     }
     
     
