@@ -323,6 +323,20 @@ var personIndex = {
         onhurt:function (e) {
             giveCoins(e, e.level)
         }
+    },
+    "clancy reed":{
+        ongamestart:function(e){
+            
+                var enemys = randomEnemy(e, 1)
+
+                dealDamage(enemys[0], e, Math.floor(e.stats.d*((e.level+1)*0.5)))
+                
+            }
+            
+            
+
+            
+        
     }
     
 }
