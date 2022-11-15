@@ -1,8 +1,8 @@
 var browserId = self.crypto.randomUUID(),
     redonePlayers = []
 
-var socket = io("https://still-garden-51639.herokuapp.com/", {
-    reconnection: false,
+var socket = io("https://sahserver.xl83.dev/", {
+    reconnection: true,
   });
 
   socket.on("connect", () => {
