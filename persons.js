@@ -177,6 +177,17 @@ var personDetailsIndex = {
         }
 
     },
+    "clancy reed":{
+        imageSrc:"clancy_reed.png",
+        name:"Clancy Reef",
+        description:(e)=>{return `Start of Battle => Deal ${e}00% of damage to random enemy`},
+        tier:6,
+        stats:{
+            h:1,
+            d:2,
+        }
+
+    },
    
 
 }
