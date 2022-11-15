@@ -86,8 +86,8 @@ var personDetailsIndex = {
         imageSrc:"oscar_bw.png",
         tier:6,
         baseStats: {
-            h: 3,
-            d: 2,
+            h: 4,
+            d: 6,
         },
     },
     "chloe rossner": {
@@ -183,8 +183,8 @@ var personDetailsIndex = {
         description:(e)=>{return `Start of Battle => Deal ${e}00% of damage to random enemy`},
         tier:6,
         stats:{
-            h:1,
-            d:2,
+            h:4,
+            d:5,
         }
 
     },
