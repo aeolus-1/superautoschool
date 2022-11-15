@@ -117,8 +117,8 @@ var personDetailsIndex = {
         name: "Mr. Behan",
         tier:1,
         baseStats: {
-            h: 1,
-            d: 2,
+            h: 2,
+            d: 3,
         },
     },
     "marcus gockel": {
