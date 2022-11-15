@@ -113,12 +113,12 @@ var personDetailsIndex = {
     },
    
     "mr behan": {
-        description: (e)=>{return `Faint -> Give closest friend + ${e+1}✊ and + ${e+1}❤️ and ${e} exp`},
+        description: (e)=>{return `Faint -> Summon ${e}/${e} Odin`},
         name: "Mr. Behan",
         tier:1,
         baseStats: {
             h: 2,
-            d: 3,
+            d: 1,
         },
     },
     "marcus gockel": {
