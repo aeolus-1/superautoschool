@@ -131,7 +131,7 @@ function genShop(frozenIndivuals=[]) {
         var tierChances = []
         for (let i = 0; i < 6; i++) {
             tierChances.push(
-                [(1-((1-getChances(Math.min(gameState.turn, 9), i+1))*0.95))*Math.random(), i]
+                [(1-((1-getChances(Math.min(gameState.turn, 9), i+1))*0.75))*Math.random(), i]
             )
         }
         var choosenTier = tierChances.sort((a,b)=>{return a[0]-b[0]})[5][1],
