@@ -243,6 +243,17 @@ var personDetailsIndex = {
         }
 
     },
+    "odin":{
+        imageSrc:"odin.png",
+        name:"Odin",
+        description:(e)=>{return `The Other Hound`},
+        tier:10,
+        stats:{
+            h:1,
+            d:1,
+        }
+
+    },
    
 
 }

@@ -291,7 +291,7 @@ var personIndex = {
         
     },
     "mr behan":{
-        onfaint:function(e){
+        /*onfaint:function(e){
 
             var pos = 0
             for (let i = 0; i < e.army.length; i++) {
@@ -310,12 +310,34 @@ var personIndex = {
                 giveAttack(e.army[pos+1], e, 1)
                 }
             }
+        }*/
+        onfaint:function(e, newSummons){
+            console.log(e)
+            var p = createPerson({
+                    sprite:{
+                        name:"odin",
+                        imageSrc:"odin.png",
+                        pos:{...e.sprite.pos},
+
+                    },
+                    stats:{
+                        h:e.level,
+                        d:e.level,
+                    },
+                })
+                p.army = e.army
+                newSummons.push(p)
+                console.log(newSummons)
+
+            
+            
+            
         }
     },
     "jacob said":{
         onenemysummoned:function(e, summon){
             for (let i = 0; i < e.level+1; i++) {
-                var enemys = randomEnemy(e, 1)
+                var enemys = randomFriend(((e.army != army1)?army2:army1)[0], 1)
                 dealDamage(enemys[0], e, 1)
             }
         }

@@ -189,6 +189,7 @@ function runDeathAbilitys() {
 
     for (let i = 0; i < newSummons1.length; i++) {
         const summon = newSummons1[i];
+        summon.army = army1
         for (let j = 0; j < army1.length; j++) {
             const person = army1[j];
             requestInteraction(person.sprite.name).onfriendsummoned(person, summon)
@@ -201,6 +202,7 @@ function runDeathAbilitys() {
     army1 = [...newSummons1, ...army1]
     for (let i = 0; i < newSummons2.length; i++) {
         const summon = newSummons2[i];
+        summon.army = army2
         for (let j = 0; j < army2.length; j++) {
             const person = army2[j];
             requestInteraction(person.sprite.name).onfriendsummoned(person, summon)
