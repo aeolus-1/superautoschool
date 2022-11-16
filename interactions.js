@@ -16,6 +16,7 @@ var defualtIndex = {
         incomeDamageMod:0,
         endofturn:function(){},
         ongamestart:function(){},
+        onfaint:function(){},
     }
 
 function getFriends(e, army) {
@@ -163,7 +164,7 @@ var personIndex = {
                 setTimeout(() => {
                     var enemys = randomEnemy(e, 1)
 
-                    dealDamage(enemys[0], e, 1)
+                    if (enemys[0]!=undefined) dealDamage(enemys[0], e, 1)
                 }, 300*i);
                 
             }
@@ -329,7 +330,7 @@ var personIndex = {
             
                 var enemys = randomEnemy(e, 1)
 
-                dealDamage(enemys[0], e, Math.floor(e.stats.d*((e.level+1)*0.5)))
+                if (enemys[0]!=undefined) dealDamage(enemys[0], e, Math.floor(e.stats.d*((e.level+1)*0.5)))
                 
             }
             
@@ -359,6 +360,24 @@ var foodIndex = {
             
         }
     },
+    "collar":{
+        onfaint:function(e, newSummons) {      
+            var p = createPerson({
+                sprite:{
+                    name:"herm",
+                    imageSrc:"herm.png",
+                    pos:{...e.sprite.pos},
+
+                },
+                stats:{
+                    h:1,
+                    d:1,
+                },
+            })
+            p.army = e.army
+            newSummons.push(p)
+        },
+    }
 }
 
 function requestInteraction(name) {

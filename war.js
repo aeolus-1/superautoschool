@@ -24,6 +24,9 @@ var army1 = [],
 
 function startWar(army1S, army2S) {
 
+    document.body.style.pointerEvents = ""
+
+
     preArmy = army1S
     document.body.style["background-image"] = 'url("imgs/backWar.png")'
     document.body.style["background-color"] ="black"
@@ -167,6 +170,7 @@ function runDeathAbilitys() {
         if (person.stats.h <= 0) {
             console.log(person.sprite.name)
             requestInteraction(person.sprite.name).onfaint(person, newSummons1, newSummons2)
+            requestFoodInteraction(person.heldFood).onfaint(person, newSummons1, newSummons2)
         
 
         }
@@ -176,6 +180,7 @@ function runDeathAbilitys() {
         const person = army2[i];
         if (person.stats.h <= 0) {
             requestInteraction(person.sprite.name).onfaint(person, newSummons2, newSummons1)
+            requestFoodInteraction(person.heldFood).onfaint(person, newSummons2, newSummons1)
         
 
         }
@@ -232,6 +237,7 @@ function deleteDead() {
 }
 
 function calculateGame(turn) {
+    if (army1[0]!=undefined&&army1[0]!=undefined) {
     army1[0].stats.h -= army2[0].stats.d+(requestFoodInteraction(army1[0].heldFood).incomeDamageMod)
     army2[0].stats.h -= army1[0].stats.d+(requestFoodInteraction(army2[0].heldFood).incomeDamageMod)
 
@@ -254,7 +260,7 @@ function calculateGame(turn) {
 
     
 
-    
+}
     
 
 

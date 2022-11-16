@@ -126,7 +126,7 @@ function createGui() {
         pos:v((htmlSize.x*0.5)-224, (htmlSize.y*0.5)-60),
         z:10,
         onclick:function(e){
-
+            document.body.style.pointerEvents = "none"
             for (let i = 0; i < army1.length; i++) {
                 const person = army1[i];
                 requestInteraction(person.sprite.name).onendgameturn(person)

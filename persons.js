@@ -180,7 +180,7 @@ var personDetailsIndex = {
     "clancy reed":{
         imageSrc:"clancy_reed.png",
         name:"Clancy Reef",
-        description:(e)=>{return `Start of Battle => Deal ${e}00% of damage to random enemy`},
+        description:(e)=>{return `Start of Battle => Deal ${((e+1)*0.5)*100}% of damage to random enemy`},
         tier:6,
         stats:{
             h:4,
@@ -188,14 +188,58 @@ var personDetailsIndex = {
         }
 
     },
-        "charlotte willis":{
-        imageSrc:"charlotte_willis.png",
-        name:"Charlotte Willis",
-        description:(e)=>{return `give all people in the shop + ${2*e}❤️ and + ${2*e}✊`},
+    "lachlen able":{
+        imageSrc:"lachlen_able.png",
+        name:"One able lachlen",
+        description:(e)=>{return `I dunno`},
         tier:6,
         stats:{
-            h:6,
-            d:3,
+            h:3,
+            d:4,
+        }
+
+    },
+    "jake bujis":{
+        imageSrc:"jake_bujis.png",
+        name:"Jake Bujis",
+        description:(e)=>{return `I dunno`},
+        tier:6,
+        stats:{
+            h:4,
+            d:4,
+        }
+
+    },
+    "samual tarling":{
+        imageSrc:"samual_tarling.png",
+        name:"Samual Tarling",
+        description:(e)=>{return `I dunno`},
+        tier:6,
+        stats:{
+            h:4,
+            d:4,
+        }
+
+    },
+    "edan gatley":{
+        imageSrc:"edan_gatley.png",
+        name:"Edan Gatley",
+        description:(e)=>{return `I dunno`},
+        tier:6,
+        stats:{
+            h:4,
+            d:4,
+        }
+
+    },
+    "herm":{
+        imageSrc:"herm.png",
+        name:"Herm",
+        description:(e)=>{return `The Hound`},
+        tier:0,
+        stats:{
+            h:1,
+            d:1,
         }
 
     },
@@ -210,6 +254,7 @@ var foodDetailsIndex = {
         stats:{
             d:1,
             h:1,
+            xp:0,
         }
     },
     "chip salt":{
@@ -218,6 +263,16 @@ var foodDetailsIndex = {
         stats:{
             d:2,
             h:0,
+            xp:0,
+        }
+    },
+    "pizza":{
+        name:"Pizza",
+        description:()=>{return `Gives + 1xp`},
+        stats:{
+            d:0,
+            h:0,
+            xp:1,
         }
     },
     "chip chicken":{
@@ -227,6 +282,7 @@ var foodDetailsIndex = {
         stats:{
             d:0,
             h:2,
+            xp:0,
         }
     },
     "calippo":{
@@ -235,6 +291,16 @@ var foodDetailsIndex = {
         stats:{
             h:-1,
             d:3,
+            xp:0,
+        }
+    },
+    "icey pole":{
+        name:"Icey Pole",
+        description:()=>{return "Gives +3❤️ and -1✊"},
+        stats:{
+            h:3,
+            d:-1,
+            xp:0,
         }
     },
     "basil":{
@@ -245,6 +311,12 @@ var foodDetailsIndex = {
     "jelly":{
         name:"Jelly",
         description:()=>{return `Gain + 3❤️ and + 3✊ for one attack`},
+        held:true,
+    },
+    "collar":{
+        name:"Dog Collar",
+        imageSrc:"collar.png",
+        description:()=>{return `Faint => Summon a 1/1 Hound`},
         held:true,
     },
    
@@ -271,6 +343,7 @@ function getFoodDetals(str) {
         stats:{
             h:1,
             d:1,
+            xp:0,
         },
         held:false,
 
