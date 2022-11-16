@@ -292,26 +292,7 @@ var personIndex = {
         
     },
     "mr behan":{
-        /*onfaint:function(e){
-
-            var pos = 0
-            for (let i = 0; i < e.army.length; i++) {
-                const fri = e.army[i];
-                console.log(fri, e)
-                if (fri.sprite.element.id == e.sprite.element.id) {
-                    pos = i
-                    break
-                }
-            }
-            console.log(pos)
-            
-            if (e.army[pos+1]!=undefined) {
-                if (e.army[pos+1].sprite!=undefined) {
-                giveHealth(e.army[pos+1], e, 2)
-                giveAttack(e.army[pos+1], e, 1)
-                }
-            }
-        }*/
+        
         onfaint:function(e, newSummons){
             console.log(e)
             var p = createPerson({
@@ -381,6 +362,27 @@ var personIndex = {
             var enArmy = (e.army != army1)?army2:army1
             if (enArmy[1]!=undefined) {
                 dealDamage(enArmy[1], e, e.level)
+            }
+        }
+    },
+    "rohan bag":{
+        onhurt:function(e){
+            var pos = 0
+            for (let i = 0; i < e.army.length; i++) {
+                const fri = e.army[i];
+                console.log(fri, e)
+                if (fri.sprite.element.id == e.sprite.element.id) {
+                    pos = i
+                    break
+                }
+            }
+            console.log(pos)
+            
+            if (e.army[pos+1]!=undefined) {
+                if (e.army[pos+1].sprite!=undefined) {
+                giveHealth(e.army[pos+1], e, 2)
+                giveAttack(e.army[pos+1], e, 1)
+                }
             }
         }
     }

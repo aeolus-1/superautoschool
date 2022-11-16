@@ -97,6 +97,11 @@ var spriteLists = {
         name:"lachlen able",
         imageSrc:"lachlen_able.png",
     },
+    {
+        name:"rohan bag",
+        imageSrc:"rohan_bag.png",
+    },
+    
     
     
     {}],
@@ -171,7 +176,6 @@ function genShop(frozenIndivuals=[]) {
         var choosenTier = tierChances.sort((a,b)=>{return a[0]-b[0]})[5][1],
             possiblePlayers = getPlayersofTier(spriteLists.players)[choosenTier+1]
 
-        console.log(tierChances.sort((a,b)=>{return a[0]-b[0]}))
         var person = createPerson({sprite:foodItem?list[randInt(0,list.length-1)]:possiblePlayers[randInt(0,possiblePlayers.length-1)], foodItem:foodItem}),
             sprite = person.sprite
 
