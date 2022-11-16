@@ -234,8 +234,8 @@ var personDetailsIndex = {
     },
     "herm":{
         imageSrc:"herm.png",
-        name:"Herm",
-        description:(e)=>{return `The Hound`},
+        name:"Hermione",
+        description:(e)=>{return `Fat`},
         tier:10,
         stats:{
             h:1,
@@ -246,7 +246,7 @@ var personDetailsIndex = {
     "odin":{
         imageSrc:"odin.png",
         name:"Odin",
-        description:(e)=>{return `The Other Hound`},
+        description:(e)=>{return `Odin Borson was the former King of Asgard, son of Bor, husband of Frigga, father of Hela and Thor, the adoptive father of Loki, and the former protector of the Nine Realms.`},
         tier:10,
         stats:{
             h:1,
@@ -341,6 +341,16 @@ var foodDetailsIndex = {
         description:()=>{return "Take 1 less damage per hit"},
         held:true,
     },
+    "super basil":{
+        name:"Super Saiyen Basil",
+        description:()=>{return "Take 3 less damage per hit"},
+        held:true,
+    },
+    "red basil":{
+        name:"Super Saiyen God Basil ",
+        description:()=>{return "Take 6 less damage per hit"},
+        held:true,
+    },
     "jelly":{
         name:"Jelly",
         description:()=>{return `Gain + 3❤️ and + 3✊ for one attack`},
@@ -349,7 +359,7 @@ var foodDetailsIndex = {
     "collar":{
         name:"Dog Collar",
         imageSrc:"collar.png",
-        description:()=>{return `Faint => Summon a 1/1 Hermione`},
+        description:()=>{return `Faint -> Summon a 1/1 Hermione`},
         held:true,
     },
    
