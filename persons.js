@@ -243,6 +243,16 @@ var personDetailsIndex = {
         }
 
     },
+        "trevor":{
+        imageSrc:"trevor.png",
+        name:"Chef Trev",
+        description:(e)=>{return `Food with Health, Attack or xp effects are ${1+e} times stronger.`},
+        tier:6,
+        stats:{
+            h:5,
+            d:5,
+        }
+
    
 
 }
