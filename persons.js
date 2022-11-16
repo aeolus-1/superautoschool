@@ -191,7 +191,7 @@ var personDetailsIndex = {
     "lachlen able":{
         imageSrc:"lachlen_able.png",
         name:"One able lachlen",
-        description:(e)=>{return `Before Attack -> Gain + ${2*e}❤️ and + ${3*e}✊`},
+        description:(e)=>{return `Before Attack -> Gain + ${2*e}❤️ and + ${e}✊`},
         tier:6,
         stats:{
             h:3,
@@ -202,7 +202,7 @@ var personDetailsIndex = {
     "jake bujis":{
         imageSrc:"jake_bujis.png",
         name:"Jake Bujis",
-        description:(e)=>{return `Adds 4th pedestal to shop (adds 3rd pedestal for food when level 3)`},
+        description:(e)=>{return `Adds 4th pedestal to shop (adds 3rd pedestal for food when level 3) DOESNT WORK RN`},
         tier:6,
         stats:{
             h:5,

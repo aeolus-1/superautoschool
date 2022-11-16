@@ -296,14 +296,20 @@ function stepGame(i) {
 
     setTimeout(() => {
         
-    
-    
+        requestInteraction(army1[0].sprite.name).onstartturn(army1[0])
+        requestInteraction(army2[0].sprite.name).onstartturn(army2[0])
+
+        var checkInterval = setInterval(() => {
+            if (warStageAllClear <= 0) {
+                clearInterval(checkInterval)
+        
         calculateGame(i)
         runDeathAbilitys()
         deleteDead()
 
         runWalkInAni(army1, 1, 1)
             runWalkInAni(army2, -1, 1)
+            
         
 
         setTimeout(() => {
@@ -348,6 +354,7 @@ function stepGame(i) {
                 }, 1000/pauseSpeed);
             }
         }, 500/pauseSpeed);
+    }}, 50)
 
     }, 500/pauseSpeed);
 }

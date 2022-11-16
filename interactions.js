@@ -4,6 +4,7 @@ var defualtIndex = {
     onfriendsummoned:function(){},
     onenemysummoned:function(){},
     endofturn:function(){},
+    onstartturn:function(){},
     onhurt:function(){},
 
     onsell:function(){console.log("sold me")},
@@ -360,6 +361,28 @@ var personIndex = {
 
             
         
+    },
+    "samual tarling":{
+        ongamestart:function(e) {
+            if (e.army.length <= 4) {
+                giveHealth(e, e, e.level*2)
+                giveAttack(e, e, e.level)
+            }
+        }
+    },
+    "lachlen able":{
+        onstartturn:function(e) {
+            giveHealth(e, e, e.level*2)
+                giveAttack(e, e, e.level*2)
+        }
+    },
+    "edan gatley":{
+        onstartturn:function(e) {
+            var enArmy = (e.army != army1)?army2:army1
+            if (enArmy[1]!=undefined) {
+                dealDamage(enArmy[1], e, e.level)
+            }
+        }
     }
     
 }
