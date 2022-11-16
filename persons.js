@@ -35,8 +35,8 @@ var personDetailsIndex = {
         imageSrc:"jai_rodgers.png",
         tier:3,
         baseStats: {
-            h: 2,
-            d: 2,
+            h: 4,
+            d: 3,
         },
     },
     "liam gallagher": {
@@ -191,29 +191,29 @@ var personDetailsIndex = {
     "lachlen able":{
         imageSrc:"lachlen_able.png",
         name:"One able lachlen",
-        description:(e)=>{return `I dunno`},
+        description:(e)=>{return `Before Attack -> Gain + ${2*e}❤️ and + ${3*e}✊`},
         tier:6,
         stats:{
             h:3,
-            d:4,
+            d:5,
         }
 
     },
     "jake bujis":{
         imageSrc:"jake_bujis.png",
         name:"Jake Bujis",
-        description:(e)=>{return `I dunno`},
+        description:(e)=>{return `Adds 4th pedestal to shop (adds 3rd pedestal for food when level 3)`},
         tier:6,
         stats:{
-            h:4,
-            d:4,
+            h:5,
+            d:6,
         }
 
     },
     "samual tarling":{
         imageSrc:"samual_tarling.png",
         name:"Samual Tarling",
-        description:(e)=>{return `I dunno`},
+        description:(e)=>{return `End Turn -> if there is an empty space in your team then gain + ${2*e}❤️ and + ${2*e}✊`},
         tier:6,
         stats:{
             h:4,
@@ -224,18 +224,18 @@ var personDetailsIndex = {
     "edan gatley":{
         imageSrc:"edan_gatley.png",
         name:"Edan Gatley",
-        description:(e)=>{return `I dunno`},
-        tier:6,
+        description:(e)=>{return `Before Attack -> deal 1 🪨 to closest friend behind ${e} time(s)`},
+        tier:2,
         stats:{
-            h:4,
-            d:4,
+            h:3,
+            d:2,
         }
 
     },
     "herm":{
         imageSrc:"herm.png",
-        name:"Herm",
-        description:(e)=>{return `The Hound`},
+        name:"Hermione",
+        description:(e)=>{return `Fat`},
         tier:0,
         stats:{
             h:1,
@@ -316,7 +316,7 @@ var foodDetailsIndex = {
     "collar":{
         name:"Dog Collar",
         imageSrc:"collar.png",
-        description:()=>{return `Faint => Summon a 1/1 Hound`},
+        description:()=>{return `Faint => Summon a 1/1 Hermione`},
         held:true,
     },
    
