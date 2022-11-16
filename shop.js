@@ -81,6 +81,23 @@ var spriteLists = {
         name:"rylan holding",
         imageSrc:"rylan_holding.png",
     },
+    {
+        name:"jake bujis",
+        imageSrc:"jake_bujis.png",
+    },
+    {
+        name:"samual tarling",
+        imageSrc:"samual_tarling.png",
+    },
+    {
+        name:"edan gatley",
+        imageSrc:"edan_gatley.png",
+    },
+    {
+        name:"lachlen able",
+        imageSrc:"lachlen_able.png",
+    },
+    
     
     {}],
     food:[
@@ -108,7 +125,19 @@ var spriteLists = {
         name:"chip chicken",
         imageSrc:"chip_chicken.png"
 
-    }
+    },
+    {
+        name:"pizza",
+        imageSrc:"pizza.png"
+    },
+    {
+        name:"icey pole",
+        imageSrc:"icey_pole.png"
+    },
+    {
+        name:"collar",
+        imageSrc:"collar.png"
+    },
 ]
     
 }
@@ -136,12 +165,13 @@ function genShop(frozenIndivuals=[]) {
         var tierChances = []
         for (let i = 0; i < 6; i++) {
             tierChances.push(
-                [(1-((1-getChances(Math.min(gameState.turn, 9), i+1))*0.75))*Math.random(), i]
+                [(getChances(Math.min(gameState.turn, 9), i+1)*0.75)*Math.random(), i]
             )
         }
         var choosenTier = tierChances.sort((a,b)=>{return a[0]-b[0]})[5][1],
             possiblePlayers = getPlayersofTier(spriteLists.players)[choosenTier+1]
-            console.log(possiblePlayers, choosenTier)
+
+        console.log(tierChances.sort((a,b)=>{return a[0]-b[0]}))
         var person = createPerson({sprite:foodItem?list[randInt(0,list.length-1)]:possiblePlayers[randInt(0,possiblePlayers.length-1)], foodItem:foodItem}),
             sprite = person.sprite
 

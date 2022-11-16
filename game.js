@@ -11,6 +11,8 @@ function makePurchase(cost) {
     if (gameState.coins >= cost) {
         gameState.coins -= cost
         return true
+    } else {
+        gui["coins-icon"].render.targetScaleV = 5
     }
     return false
 }
@@ -58,6 +60,7 @@ function createStones() {
 }
 
 function startGame(preArmy, frozenIndivuals) {
+    document.body.style.pointerEvents = ""
     for (let i = 0; i < sprites.length; i++) {
         const sp = sprites[i];
         if (sp.person) {

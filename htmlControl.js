@@ -9,6 +9,9 @@ var htmls = {
 
 var screenShake = 0;
 
+var screenOverlay = document.createElement("div")
+
+
 var htmlSize = v(1680, 913);
 
 function createSpriteHTML(options) {
@@ -114,7 +117,17 @@ function drop(e) {
           
 
           sourceStone.sprite.docked = undefined;
-
+          console.log(stats)
+          if (stats.xp > 0) {
+            playAnimation(
+              throwItem("xp.png", e.srcElement.sprite, e.srcElement.sprite),
+              () => {
+                givePersonXp(e.srcElement.sprite.person, stats.xp)
+            e.srcElement.sprite.render.targetScaleV += 1
+              }
+            );
+          }
+          if (stats.h>0 || stats.d>0) {
           playAnimation(
             throwItem("apple.png", e.srcElement.sprite, e.srcElement.sprite),
             () => {
@@ -123,6 +136,7 @@ function drop(e) {
           e.srcElement.sprite.render.targetScaleV += 1
             }
           );
+          }
 
           deletePerson(element.sprite.person);
           selectedSprite = undefined;
