@@ -360,7 +360,6 @@ var personIndex = {
     },
     "lachlen able":{
         onstartturn:function(e) {
-            giveHealth(e, e, e.level*2)
                 giveAttack(e, e, e.level*2)
         }
     },
