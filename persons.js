@@ -33,7 +33,7 @@ var personDetailsIndex = {
         description: (e)=>{return `End turn -> give random friend + ${e}❤️`},
         name: "Jai the guy",
         imageSrc:"jai_rodgers.png",
-        tier:4,
+        tier:3,
         baseStats: {
             h: 2,
             d: 2,
@@ -60,7 +60,7 @@ var personDetailsIndex = {
         },
     },
     "lily derwin": {
-        description: (e)=>{return `Sell: Replace food shop with 1 free Bundy Juice that gives +${e}/+${e}`},
+        description: (e)=>{return `Sell: Replace food shop with 1 free peach Juice that gives +${e}/+${e}`},
         name: "Lily Derwin",
         imageSrc:"lily_derwin.png",
         tier:1,
