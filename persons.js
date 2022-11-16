@@ -191,7 +191,7 @@ var personDetailsIndex = {
     "lachlen able":{
         imageSrc:"lachlen_able.png",
         name:"One able lachlen",
-        description:(e)=>{return `Before Attack -> Gain + ${2*e}❤️ and + ${e}✊`},
+        description:(e)=>{return `Before Attack -> Gain +${e*2}✊`},
         tier:6,
         stats:{
             h:3,
@@ -258,7 +258,7 @@ var personDetailsIndex = {
     "trevor":{
         imageSrc:"trevor.png",
         name:"Chef Trev",
-        description:(e)=>{return `Food with Health, Attack or xp effects are ${1+e} times stronger.`},
+        description:(e)=>{return `DOESNT DO ANUTHING RN Food with Health, Attack or xp effects are ${1+e} times stronger.`},
         tier:6,
         stats:{
             h:5,

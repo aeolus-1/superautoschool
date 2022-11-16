@@ -101,6 +101,10 @@ var spriteLists = {
         name:"rohan bag",
         imageSrc:"rohan_bag.png",
     },
+    {
+        name:"trevor",
+        imageSrc:"trevor.png",
+    },
     
     
     

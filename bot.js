@@ -14,7 +14,7 @@ function getRandomArmy() {
 
 function createBotPerson(turn) {
     var randomPersons = Object.keys(personDetailsIndex).filter((e)=>{return getDetails(e).tier<7}),
-            randomPerson = randomPersons[randInt(0, randomPersons.length-1)]
+            randomPerson = "mr behan",//randomPersons[randInt(0, randomPersons.length-1)]
         randomPersonO = getDetails(randomPerson)
         
     var p = createPerson(
@@ -30,7 +30,7 @@ function createBotPerson(turn) {
         }
     )
     if (Math.random()<(turn/30)) {
-        setPersonHeldFood(p, ["jelly","basil"][randInt(0,1)])
+        setPersonHeldFood(p, ["jelly","basil", "collar"][randInt(0,2)])
     }
 
     army2Name = names[randInt(0,names.length-1)].split(",")[0]

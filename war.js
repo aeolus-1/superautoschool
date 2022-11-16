@@ -296,8 +296,8 @@ function stepGame(i) {
 
     setTimeout(() => {
         
-        requestInteraction(army1[0].sprite.name).onstartturn(army1[0])
-        requestInteraction(army2[0].sprite.name).onstartturn(army2[0])
+        if (army1[0] != undefined) requestInteraction(army1[0].sprite.name).onstartturn(army1[0])
+        if (army2[0] != undefined) requestInteraction(army2[0].sprite.name).onstartturn(army2[0])
 
         var checkInterval = setInterval(() => {
             if (warStageAllClear <= 0) {

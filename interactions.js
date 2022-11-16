@@ -50,15 +50,22 @@ function randomFriend(e, amount) {
     
 }
 function randomEnemy(e, amount) {
+    var oppArmy = army2
+    for (let i = 0; i < army2.length; i++) {
+        const person2 = army2[i];
+        if (person2.sprite.element.id == e.sprite.element.id) oppArmy = army1
+        break
+
+    }
 
     var friendsList = new Array(),
-        fris = shuffle([...(e.army == army1)?army2:army1])
+        fris = shuffle([...oppArmy])
 
     for (let i = 0; i < amount; i++) {
         if (fris.length <= 0) return friendsList
         var num = randInt(0, fris.length-1),
             returnOb = fris[num]
-        friendsList.push(returnOb)
+        if (returnOb.stats.h>0) friendsList.push(returnOb)
     }
 
 
@@ -319,7 +326,7 @@ var personIndex = {
     "jacob said":{
         onenemysummoned:function(e, summon){
             for (let i = 0; i < e.level+1; i++) {
-                var enemys = randomFriend(((e.army != army1)?army2:army1)[0], 1)
+                var enemys = randomEnemy(e, 1)
                 dealDamage(enemys[0], e, 1)
             }
         }
@@ -384,6 +391,11 @@ var personIndex = {
                 giveAttack(e.army[pos+1], e, 1)
                 }
             }
+        }
+    },
+    "rylan holding": {
+        onenemysummoned:function(e, summon) {
+            dealDamage(summon, e, e.level)
         }
     }
     
