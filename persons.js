@@ -236,7 +236,7 @@ var personDetailsIndex = {
         imageSrc:"herm.png",
         name:"Herm",
         description:(e)=>{return `The Hound`},
-        tier:0,
+        tier:10,
         stats:{
             h:1,
             d:1,
