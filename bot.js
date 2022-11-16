@@ -14,7 +14,7 @@ function getRandomArmy() {
 
 function createBotPerson(turn) {
     var randomPersons = Object.keys(personDetailsIndex).filter((e)=>{return getDetails(e).tier<7}),
-            randomPerson = "mr behan",//randomPersons[randInt(0, randomPersons.length-1)]
+            randomPerson = randomPersons[randInt(0, randomPersons.length-1)]
         randomPersonO = getDetails(randomPerson)
         
     var p = createPerson(
