@@ -251,7 +251,17 @@ var personDetailsIndex = {
         stats:{
             h:5,
             d:5,
-        }
+    },
+        "rohan bag": {
+        description: (e)=>{return `Hurt -> give closest friend behind friend + ${2*e}❤️ and + ${2*e}✊`},
+        name: "Rohan Bagshow",
+        imageSrc:"rohan_bag.png",
+        tier:3,
+        baseStats: {
+            h: 4,
+            d: 2,
+        },
+    },
 
    
 
