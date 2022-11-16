@@ -234,9 +234,9 @@ var personDetailsIndex = {
     },
     "herm":{
         imageSrc:"herm.png",
-        name:"Hermione",
-        description:(e)=>{return `Fat`},
-        tier:0,
+        name:"Herm",
+        description:(e)=>{return `The Hound`},
+        tier:10,
         stats:{
             h:1,
             d:1,
