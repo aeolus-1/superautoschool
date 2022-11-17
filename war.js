@@ -85,6 +85,9 @@ function startWar(army1S, army2S) {
     army1.opp = army2
     army2.opp = army1
 
+    army1.newSummons = newSummons1
+    army2.newSummons = newSummons2
+
     var armyString1 = compressArmy(getArmy()),
     armyString2 = compressArmy((()=>{
         var rAr = []
@@ -320,12 +323,14 @@ function stepGame(i) {
         if (army1[0] != undefined) requestInteraction(army1[0].sprite.name).onstartturn(army1[0])
         if (army2[0] != undefined) requestInteraction(army2[0].sprite.name).onstartturn(army2[0])
 
-        warStageAllClear += 1
-        playAnimation(rotatePersons(army1[0], army2[0]), ()=>{
-            playAnimation(smackPersons(army1[0], army2[0]), ()=>{
-                warStageAllClear -= 1
+        if (army1[0]!=undefined&&army2[0]!=undefined) {
+            warStageAllClear += 1
+            playAnimation(rotatePersons(army1[0], army2[0]), ()=>{
+                playAnimation(smackPersons(army1[0], army2[0]), ()=>{
+                    warStageAllClear -= 1
+                })
             })
-        })
+        }
 
         var checkInterval = setInterval(() => {
             if (warStageAllClear <= 0) {

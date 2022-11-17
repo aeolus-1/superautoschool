@@ -388,9 +388,10 @@ var personIndex = {
         }
     },
     "pez":{
-        onhurt:function(e, newSummons) {
+        onhurt:function(e) {
+            
             var choices = getPlayersofTier(spriteLists.players)[e.level],
-                name = choices[randInt(0, choices.length-1)].name,
+                name = choices[randInt(0, choices.length-1)].name||"rylan holding",
                 stats = getDetails(name).baseStats
 
             var p = createPerson({
@@ -406,8 +407,7 @@ var personIndex = {
                     },
                 })
                 p.army = e.army
-                newSummons.push(p)
-                console.log(newSummons)
+                e.army.newSummons.push(p)
         }
     }
     
