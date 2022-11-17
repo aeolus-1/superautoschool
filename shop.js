@@ -151,6 +151,10 @@ var spriteLists = {
         name:"student id",
         imageSrc:"student_id.png"
     },
+    {
+        name:"baby jai",
+        imageSrc:"baby_jai.png"
+    },
 ]
     
 }

@@ -341,9 +341,9 @@ var personIndex = {
         
     },
     "samual tarling":{
-        onendgameturn:function(e) {
+        endofturn:function(e) {
             if (e.army.length <= 4) {
-                giveHealth(e, e, e.level*2)
+                giveHealth(e, e, e.level)
                 giveAttack(e, e, e.level)
             }
         }
@@ -447,6 +447,11 @@ var foodIndex = {
             })
             p.army = e.army
             newSummons.push(p)
+        },
+    },
+    "baby jai":{
+        ongamestart:function(e) {      
+            e.stats.h = 0
         },
     }
 }

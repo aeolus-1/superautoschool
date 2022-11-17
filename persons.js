@@ -378,6 +378,12 @@ var foodDetailsIndex = {
         description:()=>{return `Gives reduced Food costs`},
         held:true,
     },
+    "baby jai":{
+        name:"Jai Rodgie",
+        imageSrc:"baby_jai.png",
+        description:()=>{return `Kills the user`},
+        held:true,
+    },
    
 }
 function getDetails(str) {
