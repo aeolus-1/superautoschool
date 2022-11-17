@@ -72,8 +72,13 @@ function drop(e) {
   var element = document.getElementById(data[0]),
     sourceStone = document.getElementById(data[1]);
 
-  console.log("drop");
-  if (makingPurchase ? makePurchase(3) : true) {
+  var cost = 3
+  if (droppingFood) {
+    if (e.srcElement.sprite.person.heldFood == "student id") {
+      cost = 1
+    }
+  }
+  if (makingPurchase ? makePurchase(cost) : true) {
     var isP = e.srcElement.sprite.person
     if (isP != undefined && !droppingFood && (isP!=undefined)?(isP.sprite.element.id!=element.id):false) {
       e.srcElement.sprite.person.frozen = false;
@@ -185,6 +190,7 @@ function ondrop(ev) {
 }
 
 function allowDrop(ev) {
+  if (ev.target.sprite.inShop) return 0
   if (droppingFood && ev.srcElement.sprite.person != undefined) {
     ev.preventDefault();
   }
@@ -196,6 +202,7 @@ function allowDrop(ev) {
   }
 }
 function dragstart(ev) {
+  
   droppingFood = ev.target.sprite.person.foodItem;
   makingPurchase = ev.target.sprite.inShop;
   droppingName = ev.target.sprite.name;

@@ -9,7 +9,7 @@ function getArmy() {
     return army
 }
 var army1 = [],
-    army2,
+    army2 = [],
     army1Name = "untitled",
     army2Name = "untitled",
     preArmy,
@@ -20,7 +20,14 @@ var army1 = [],
 
 
     versusArmy = undefined,
-    playerSearchStartTime = 0
+    playerSearchStartTime = 0,
+
+
+    newSummons1 = [],
+    newSummons2 = []
+
+army1.opp = army2
+army2.opp = army1
 
 function startWar(army1S, army2S) {
 
@@ -71,12 +78,25 @@ function startWar(army1S, army2S) {
         font:50,
     })
 
-
-
-
-
+   
     army1 = decompressArmy(army1S)
     army2 = decompressArmy(army2S)
+    
+    army1.opp = army2
+    army2.opp = army1
+
+    var armyString1 = compressArmy(getArmy()),
+    armyString2 = compressArmy((()=>{
+        var rAr = []
+        for (let i = 0; i < army2.length; i++) {
+            const person = army2[i];
+            rAr.push(person.sprite)
+        }
+        return rAr
+    })())
+
+rand = new Math.seedrandom((armyString1.length>armyString2.length?armyString1:armyString2));
+
 
     targetPosInterval = setInterval(() => {
         updateSpritePos([...army1, ...army2])
@@ -162,8 +182,7 @@ function aniBlast(army, direction, per) {
 }
 
 function runDeathAbilitys() {
-    var newSummons1 = [],
-    newSummons2 = []
+    
 
     for (let i = 0; i < army1.length; i++) {
         const person = army1[i];
@@ -214,6 +233,8 @@ function runDeathAbilitys() {
     }
     army2 = [...newSummons2, ...army2]
     console.log(newSummons2, army2)
+    newSummons1 = []
+    newSummons2 = []
 
     
 }
@@ -239,30 +260,30 @@ function deleteDead() {
 }
 
 function calculateGame(turn) {
-    if (army1[0]!=undefined&&army1[0]!=undefined) {
-    army1[0].stats.h -= army2[0].stats.d+(requestFoodInteraction(army1[0].heldFood).incomeDamageMod)
-    army2[0].stats.h -= army1[0].stats.d+(requestFoodInteraction(army2[0].heldFood).incomeDamageMod)
+    if (army1[0]!=undefined&&army1[0]!=undefined) if (army1[0].stats!=undefined&&army2[0].stats!=undefined) {
+        army1[0].stats.h -= army2[0].stats.d+(requestFoodInteraction(army1[0].heldFood).incomeDamageMod)
+        army2[0].stats.h -= army1[0].stats.d+(requestFoodInteraction(army2[0].heldFood).incomeDamageMod)
 
-    if (army2[0].stats.d+(requestFoodInteraction(army1[0].heldFood).incomeDamageMod) > 0) {
-        requestInteraction(army1[0].sprite.name).onhurt(army1[0])
+        if (army2[0].stats.d+(requestFoodInteraction(army1[0].heldFood).incomeDamageMod) > 0) {
+            requestInteraction(army1[0].sprite.name).onhurt(army1[0], newSummons1)
+
+        }
+        if (army1[0].stats.d+(requestFoodInteraction(army2[0].heldFood).incomeDamageMod) > 0) {
+            requestInteraction(army2[0].sprite.name).onhurt(army2[0], newSummons2)
+
+        }
+        army1[0].alive = army1[0].stats.h>0
+        army2[0].alive = army2[0].stats.h>0
+
+        requestInteraction(army1[0].sprite.name).endofturn(army1[0], turn)
+        requestFoodInteraction(army1[0].heldFood).endofturn(army1[0], turn)
+        requestInteraction(army2[0].sprite.name).endofturn(army2[0], turn)
+        requestFoodInteraction(army2[0].heldFood).endofturn(army2[0], turn)
+
+
+        
 
     }
-    if (army1[0].stats.d+(requestFoodInteraction(army2[0].heldFood).incomeDamageMod) > 0) {
-        requestInteraction(army2[0].sprite.name).onhurt(army2[0])
-
-    }
-    army1[0].alive = army1[0].stats.h>0
-    army2[0].alive = army2[0].stats.h>0
-
-    requestInteraction(army1[0].sprite.name).endofturn(army1[0], turn)
-    requestFoodInteraction(army1[0].heldFood).endofturn(army1[0], turn)
-    requestInteraction(army2[0].sprite.name).endofturn(army2[0], turn)
-    requestFoodInteraction(army2[0].heldFood).endofturn(army2[0], turn)
-
-
-    
-
-}
     
 
 

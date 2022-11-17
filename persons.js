@@ -1,6 +1,6 @@
 var personDetailsIndex = {
     "mitchell cox": {
-        description: (e)=>{return `Buy -> Give random friend + ${e}✊ and +${e}❤️ `},
+        description: (e)=>{return `Buy => Give random friend + ${e}✊ and +${e}❤️ `},
         name: "Mitchell Cox",
         tier:1,
         baseStats: {
@@ -9,7 +9,7 @@ var personDetailsIndex = {
         },
     },
     "jett boon": {
-        description: (e)=>{return `Faint -> Give random friend + ${e*2}✊ and + ${e}❤️`},
+        description: (e)=>{return `Faint => Give random friend + ${e*2}✊ and + ${e}❤️`},
         name: "Jettrin Goon",
         imageSrc:"jett_boon.png",
         tier:1,
@@ -19,7 +19,7 @@ var personDetailsIndex = {
         },
     },
     "ben reef": {
-        description: (e)=>{return `Start of battle -> Deal 1🪨 to ${e} random enemy`},
+        description: (e)=>{return `Start of battle => Deal 1🪨 to ${e} random enemy`},
         name: "Ben Reef",
         imageSrc:"ben_reef.png",
         tier:1,
@@ -30,7 +30,7 @@ var personDetailsIndex = {
         },
     },
     "jai rodgers": {
-        description: (e)=>{return `End turn -> give random friend + ${e}❤️`},
+        description: (e)=>{return `End turn => give random friend + ${e}❤️`},
         name: "Jai the guy",
         imageSrc:"jai_rodgers.png",
         tier:3,
@@ -40,7 +40,7 @@ var personDetailsIndex = {
         },
     },
     "liam gallagher": {
-        description: (e)=>{return `Faint -> summon ${5*e}/${5*e} lambo with splash attack`},
+        description: (e)=>{return `Faint => summon ${5*e}/${5*e} lambo with splash attack`},
         name: "Liam Gallagher",
         tier:4,
         imageSrc:"liam_gallagher.png",
@@ -51,7 +51,7 @@ var personDetailsIndex = {
         },
     },
     "aiden venter": {
-        description: (e)=>{return `Sell -> give 2 random friends + ${e}❤️`},
+        description: (e)=>{return `Sell => give 2 random friends + ${e}❤️`},
         name: "Aiden Venter",
         tier:1,
         baseStats: {
@@ -71,7 +71,7 @@ var personDetailsIndex = {
     },
 
     "patty hayes": {
-        description: (e)=>{return `Hurt -> give random friend + ${2*e}❤️ and + ${3*e}✊`},
+        description: (e)=>{return `Hurt => give random friend + ${2*e}❤️ and + ${3*e}✊`},
         name: "Patrick Hayes",
         imageSrc:"patty_hayes.png",
         tier:5,
@@ -81,7 +81,7 @@ var personDetailsIndex = {
         },
     },
     "oscar bw": {
-        description: (e)=>{return`End Turn -> if holding food item then gain + ${1+e}❤️ and + ${1+e}✊`},
+        description: (e)=>{return`End Turn => if holding food item then gain + ${1+e}❤️ and + ${1+e}✊`},
         name: "Oscae Benjamin-Wood",
         imageSrc:"oscar_bw.png",
         tier:6,
@@ -91,7 +91,7 @@ var personDetailsIndex = {
         },
     },
     "chloe rossner": {
-        description: (e)=>{return`Faint -> summon ${e} enemy 1/1 Greenie`},
+        description: (e)=>{return`Faint => summon ${e} enemy 1/1 Greenie`},
         name: "Chloe Rossner",
         imageSrc:"chloe_rossner.png",
         tier:2,
@@ -103,7 +103,7 @@ var personDetailsIndex = {
     "corey hankinson":{
         imageSrc:"corey_hankinson.png",
         name:"Corey Hankison",
-        description:(e)=>{return `Level up -> give all friends + ${e}xp`},
+        description:(e)=>{return `Level up => give all friends + ${e}xp`},
         tier:1,
         stats:{
             h:2,
@@ -113,7 +113,7 @@ var personDetailsIndex = {
     },
    
     "mr behan": {
-        description: (e)=>{return `Faint -> Summon ${e}/${e} Odin`},
+        description: (e)=>{return `Faint => Summon ${e}/${e} Odin`},
         name: "Mr. Behan",
         tier:1,
         baseStats: {
@@ -122,7 +122,7 @@ var personDetailsIndex = {
         },
     },
     "marcus gockel": {
-        description: (e)=>{return `Sell -> next roll is free`},
+        description: (e)=>{return `Sell => next roll is free`},
         name: "Marcus gockel",
         tier:1,
         baseStats: {
@@ -131,7 +131,7 @@ var personDetailsIndex = {
         },
     },
     "sophie turner": {
-        description: (e)=>{return `Friend summoned -> give it + ${e}❤️ and + ${e}✊ `},
+        description: (e)=>{return `Friend summoned => give it + ${e}❤️ and + ${e}✊ `},
         name: "Sophie Turner",
         tier:2,
         baseStats: {
@@ -149,7 +149,7 @@ var personDetailsIndex = {
         },
     },
     "jacob said": {
-        description: (e)=>{return `Enemy Summoned -> deal 4🪨 to 2 random enemys`},
+        description: (e)=>{return `Enemy Summoned => deal 4🪨 to 2 random enemys`},
         name: "Jacob Said",
         tier:4,
         baseStats: {
@@ -158,7 +158,7 @@ var personDetailsIndex = {
         },
     },
     "ashwin s": {
-        description: (e)=>{return `Hurt -> Give +${e} coin`},
+        description: (e)=>{return `Hurt => Give +${e} coin`},
         name: "Curry Guzzuler",
         tier:3,
         baseStats: {
@@ -169,7 +169,7 @@ var personDetailsIndex = {
     "rylan holding":{
         imageSrc:"rylan_holding.png",
         name:"Rylan Holding",
-        description:(e)=>{return `Enemy Summoned -> deal ${e} 🪨 to it`},
+        description:(e)=>{return `Enemy Summoned => deal ${e} 🪨 to it`},
         tier:1,
         stats:{
             h:3,
@@ -191,7 +191,7 @@ var personDetailsIndex = {
     "lachlen able":{
         imageSrc:"lachlen_able.png",
         name:"One able lachlen",
-        description:(e)=>{return `Before Attack -> Gain +${e*2}✊`},
+        description:(e)=>{return `Before Attack => Gain +${e*2}✊`},
         tier:6,
         stats:{
             h:3,
@@ -213,7 +213,7 @@ var personDetailsIndex = {
     "samual tarling":{
         imageSrc:"samual_tarling.png",
         name:"Samual Tarling",
-        description:(e)=>{return `End Turn -> if there is an empty space in your team then gain + ${2*e}❤️ and + ${2*e}✊`},
+        description:(e)=>{return `End Turn => if there is an empty space in your team then gain + ${2*e}❤️ and + ${2*e}✊`},
         tier:6,
         stats:{
             h:4,
@@ -224,7 +224,7 @@ var personDetailsIndex = {
     "edan gatley":{
         imageSrc:"edan_gatley.png",
         name:"Edan Gatley",
-        description:(e)=>{return `Before Attack -> deal 1 🪨 to closest friend behind ${e} time(s)`},
+        description:(e)=>{return `Before Attack => deal 1 🪨 to closest friend behind ${e} time(s)`},
         tier:2,
         stats:{
             h:3,
@@ -266,7 +266,7 @@ var personDetailsIndex = {
         }
     },
     "rohan bag": {
-        description: (e)=>{return `Hurt -> give closest friend behind friend + ${2*e}❤️ and + ${2*e}✊`},
+        description: (e)=>{return `Hurt => give closest friend behind friend + ${2*e}❤️ and + ${2*e}✊`},
         name: "Rohan Bagshow",
         imageSrc:"rohan_bag.png",
         tier:3,
@@ -274,6 +274,26 @@ var personDetailsIndex = {
             h: 4,
             d: 2,
         },
+    },
+    "pez":{
+        imageSrc:"pez.png",
+        name:"pez",
+        description:(e)=>{return `Hurt => Summons a random tier ${e} pet`},
+        tier:5,
+        stats:{
+            h:3,
+            d:2,
+        }
+    },
+    "gus honner":{
+        imageSrc:"trevor.png",
+        name:"Chef Trev",
+        description:(e)=>{return `DOESNT DO ANUTHING RN Food with Health, Attack or xp effects are ${1+e} times stronger.`},
+        tier:6,
+        stats:{
+            h:5,
+            d:5,
+        }
     },
 
    
@@ -350,6 +370,12 @@ var foodDetailsIndex = {
         name:"Dog Collar",
         imageSrc:"collar.png",
         description:()=>{return `Faint => Summon a 1/1 Hermione`},
+        held:true,
+    },
+    "student id":{
+        name:"Student ID",
+        imageSrc:"student_id.png",
+        description:()=>{return `Gives reduced Food costs`},
         held:true,
     },
    

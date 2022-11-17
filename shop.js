@@ -147,6 +147,10 @@ var spriteLists = {
         name:"collar",
         imageSrc:"collar.png"
     },
+    {
+        name:"student id",
+        imageSrc:"student_id.png"
+    },
 ]
     
 }
@@ -174,13 +178,14 @@ function genShop(frozenIndivuals=[]) {
         var tierChances = []
         for (let i = 0; i < 6; i++) {
             tierChances.push(
-                [(getChances(Math.min(gameState.turn, 9), i+1)*0.75)*Math.random(), i]
+                [(getChances(Math.min(gameState.turn, 15), i+1)*0.75)*Math.random(), i]
             )
         }
         var choosenTier = tierChances.sort((a,b)=>{return a[0]-b[0]})[5][1],
-            possiblePlayers = getPlayersofTier(spriteLists.players)[choosenTier+1]
+            possiblePlayers = getPlayersofTier(spriteLists.players)[choosenTier+1],
+            possiblePlayer = possiblePlayers[randInt(0,possiblePlayers.length-1)]
 
-        var person = createPerson({sprite:foodItem?list[randInt(0,list.length-1)]:possiblePlayers[randInt(0,possiblePlayers.length-1)], foodItem:foodItem}),
+        var person = createPerson({sprite:foodItem?list[randInt(0,list.length-1)]:possiblePlayer, foodItem:foodItem}),
             sprite = person.sprite
 
         sprite.inShop = true

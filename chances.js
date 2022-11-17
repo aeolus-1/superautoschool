@@ -1,10 +1,12 @@
 function getChances(turn, tier) {
-        let length = (10)
-    
-    var t = tier-1,
-        v = (turn-((t)*2)+1)
-    return Math.max(v<0?0:(length+1)-v, 0)/length
-    
-    
-    
+    let length = (10),
+        tierStep = 3
+
+var t = (tier*tierStep)-tierStep,
+    v = turn,
+    c = ((length+t)-v)/length
+return (c>0&&c<=1)?c:0
+
+
+
 }

@@ -17,7 +17,7 @@ function makePurchase(cost) {
     return false
 }
 
-
+var rand = new Math.seedrandom(`${Math.random()}`)
 
 
 var y = 30-101+25,
@@ -60,6 +60,7 @@ function createStones() {
 }
 
 function startGame(preArmy, frozenIndivuals) {
+    rand = new Math.seedrandom(`${Math.random()}`)
     document.body.style.pointerEvents = ""
     for (let i = 0; i < sprites.length; i++) {
         const sp = sprites[i];

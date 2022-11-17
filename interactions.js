@@ -50,13 +50,7 @@ function randomFriend(e, amount) {
     
 }
 function randomEnemy(e, amount) {
-    var oppArmy = army2
-    for (let i = 0; i < army2.length; i++) {
-        const person2 = army2[i];
-        if (person2.sprite.element.id == e.sprite.element.id) oppArmy = army1
-        break
-
-    }
+    var oppArmy = e.army.opp
 
     var friendsList = new Array(),
         fris = shuffle([...oppArmy])
@@ -71,7 +65,7 @@ function randomEnemy(e, amount) {
 
 
 
-    return fris.sort((a, b) => 0.5 - Math.random());
+    return fris.sort((a, b) => 0.5 - rand());
     
         
     
@@ -202,8 +196,8 @@ var personIndex = {
 
                     },
                     stats:{
-                        h:e.level,
-                        d:e.level,
+                        h:e.level*5,
+                        d:e.level*5,
                     },
                 })
                 p.army = e.army
@@ -344,14 +338,10 @@ var personIndex = {
                 if (enemys[0]!=undefined) dealDamage(enemys[0], e, Math.floor(e.stats.d*((e.level+1)*0.5)))
                 
             }
-            
-            
-
-            
         
     },
     "samual tarling":{
-        ongamestart:function(e) {
+        onendgameturn:function(e) {
             if (e.army.length <= 4) {
                 giveHealth(e, e, e.level*2)
                 giveAttack(e, e, e.level)
@@ -395,6 +385,29 @@ var personIndex = {
     "rylan holding": {
         onenemysummoned:function(e, summon) {
             dealDamage(summon, e, e.level)
+        }
+    },
+    "pez":{
+        onhurt:function(e, newSummons) {
+            var choices = getPlayersofTier(spriteLists.players)[e.level],
+                name = choices[randInt(0, choices.length-1)].name,
+                stats = getDetails(name).baseStats
+
+            var p = createPerson({
+                    sprite:{
+                        name:name,
+                        imageSrc:`${name.replace(" ", "_")}.png`,
+                        pos:{...e.sprite.pos},
+
+                    },
+                    stats:{
+                        h:stats.h,
+                        d:stats.d,
+                    },
+                })
+                p.army = e.army
+                newSummons.push(p)
+                console.log(newSummons)
         }
     }
     
