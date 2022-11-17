@@ -35,7 +35,7 @@ function startWar(army1S, army2S) {
 
 
     preArmy = army1S
-    document.body.style["background-image"] = 'url("imgs/backWar.png")'
+    //ocument.body.style["background-image"] = 'url("imgs/backWar.png")'
     document.body.style["background-color"] ="black"
     frozenIndivuals = []
     gameState.coins = 10
@@ -81,7 +81,7 @@ function startWar(army1S, army2S) {
    
     army1 = decompressArmy(army1S)
     army2 = decompressArmy(army2S)
-    
+
     army1.opp = army2
     army2.opp = army1
 
@@ -319,6 +319,14 @@ function stepGame(i) {
         
         if (army1[0] != undefined) requestInteraction(army1[0].sprite.name).onstartturn(army1[0])
         if (army2[0] != undefined) requestInteraction(army2[0].sprite.name).onstartturn(army2[0])
+
+        warStageAllClear += 1
+        playAnimation(rotatePersons(army1[0], army2[0]), ()=>{
+            playAnimation(smackPersons(army1[0], army2[0]), ()=>{
+                
+                warStageAllClear -= 1
+            })
+        })
 
         var checkInterval = setInterval(() => {
             if (warStageAllClear <= 0) {

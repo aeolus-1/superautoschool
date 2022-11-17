@@ -51,16 +51,40 @@ function throwItem(imageSrc, from, to) {
     }
 }
 
+function rotatePersons(person1, person2) {
+    return {
+        func:(per, ob)=>{
+            console.log(per, ob)
+            var p = Math.min(per*3, 1)//Math.min(per*8, 1)
+            console.log(ob.person1.sprite)
+            ob.person1.sprite.rotation = (p*12.5)
+            ob.person2.sprite.rotation = (-p*12.5)
+            
+            return per==1
+        },
+        time:0.25,
+        person1:person1,
+        person2:person2,
+    }
+}
 function smackPersons(person1, person2) {
     return {
         func:(per, ob)=>{
             console.log(per, ob)
-            var p = per//Math.min(per*8, 1)
+            var p = Math.min(per*8, 1)//Math.min(per*8, 1)
             ob.person1.sprite.targetPos.x = -110+(((p)*70))
+            ob.person1.sprite.targetPos.y = 300-(((p)*10))
             ob.person2.sprite.targetPos.x = 110-((p)*70)
+            ob.person2.sprite.targetPos.y = 300-(((p)*10))
+
+            if (p>0.9) {
+                ob.person1.sprite.rotation = 0
+                ob.person2.sprite.rotation = 0
+            }
+
             return per==1
         },
-        time:1,
+        time:0.5,
         person1:person1,
         person2:person2,
     }

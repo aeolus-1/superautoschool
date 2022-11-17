@@ -1,6 +1,6 @@
 function getRandomArmy() {
     var armyMembers = new Array(),
-    count = 5//Math.min(Math.floor((((gameState.turn-1)+(Math.random()*1.5))*1.25))+2, 5)
+    count = Math.min(Math.floor((((gameState.turn-1)+(Math.random()*1.5))*1.25))+2, 5)
     for (let i = 0; i < count; i++) {
         
         var p = createBotPerson(gameState.turn)
