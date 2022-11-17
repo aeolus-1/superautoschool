@@ -77,6 +77,11 @@ function smackPersons(person1, person2) {
             ob.person2.sprite.targetPos.x = 110-((p)*70)
             ob.person2.sprite.targetPos.y = 300-(((p)*10))
 
+            if (p>1/8&&p<2/8) {
+                screenShake = 10
+
+            }
+
             if (p>0.9) {
                 ob.person1.sprite.rotation = 0
                 ob.person2.sprite.rotation = 0

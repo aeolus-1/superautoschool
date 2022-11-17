@@ -78,7 +78,7 @@ function startGame(preArmy, frozenIndivuals) {
 
     document.body.style["background-color"] ="black"
 
-    //document.body.style["background-image"] = 'url("imgs/back.png")'
+    document.body.style["background-image"] = 'url("imgs/back.png")'
     createGui()
 
     createStones()

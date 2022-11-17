@@ -35,7 +35,7 @@ function startWar(army1S, army2S) {
 
 
     preArmy = army1S
-    //ocument.body.style["background-image"] = 'url("imgs/backWar.png")'
+    document.body.style["background-image"] = 'url("imgs/backWar.png")'
     document.body.style["background-color"] ="black"
     frozenIndivuals = []
     gameState.coins = 10
@@ -323,7 +323,6 @@ function stepGame(i) {
         warStageAllClear += 1
         playAnimation(rotatePersons(army1[0], army2[0]), ()=>{
             playAnimation(smackPersons(army1[0], army2[0]), ()=>{
-                
                 warStageAllClear -= 1
             })
         })
